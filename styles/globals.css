@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* chrome */
+  .sidebar::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* firefox */
+  @supports (scrollbar-color: grey transparent) {
+    /* * {
+      scrollbar-color: grey transparent;
+      scrollbar-width: thin;
+    } */
+    .sidebar {
+      scrollbar-width: none;
+    }
+  }
+}
