@@ -11,11 +11,11 @@ function SigninPage() {
 
   const router = useRouter();
 
-  const initialvalues = {
+  const initialValues = {
     email: "",
     password: "",
     otp: "",
-    rememberMe: "",
+    rememberMe: false,
   };
 
   const handleSubmit = async (values, formik) => {
@@ -61,7 +61,7 @@ function SigninPage() {
 
         <div className="flex-1 flex justify-center items-center">
           <Formik
-            initialValues={initialvalues}
+            initialValues={initialValues}
             // validationSchema={validate}
             onSubmit={handleSubmit}
           >

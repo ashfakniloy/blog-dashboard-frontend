@@ -39,6 +39,7 @@ function OtpForm({ isLoading }) {
     // Update Formik values when OTP changes
     setFieldValue("otp", otp);
   };
+
   return (
     <div className="w-[473px] px-[70px] pt-[33px] pb-[52px] bg-white rounded-2xl shadow-lg">
       <div className=" flex flex-col items-center font-manrope">

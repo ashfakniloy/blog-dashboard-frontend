@@ -1,6 +1,7 @@
+import { cn } from "@/lib/utils";
 import { ErrorMessage, Field } from "formik";
 
-export const TextareaField = ({ label, ...props }) => {
+export const TextareaField = ({ label, rows = 4, className, ...props }) => {
   return (
     <div className="w-full">
       {label && (
@@ -11,11 +12,12 @@ export const TextareaField = ({ label, ...props }) => {
       <div className="relative mt-1">
         <Field
           as="textarea"
-          rows="4"
+          rows={rows}
           id={props.name}
-          className={
-            "p-3 w-full outline-none bg-white rounded-md border border-custom-gray2 focus:border-custom-orange"
-          }
+          className={cn(
+            "p-3 w-full outline-none bg-white rounded-md border border-custom-gray2 focus:border-custom-orange",
+            className
+          )}
           // id={name}
           // name={name}
           {...props}

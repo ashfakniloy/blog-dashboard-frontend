@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import { TextareaField } from "./Fields/TextareaField";
 
 function CategoryForm() {
-  const initialvalues = {
+  const initialValues = {
     name: "",
     slug: "",
     description: "",
@@ -17,7 +17,7 @@ function CategoryForm() {
   return (
     <div className="mt-8">
       <Formik
-        initialValues={initialvalues}
+        initialValues={initialValues}
         // validationSchema={validate}
         onSubmit={handleSubmit}
       >

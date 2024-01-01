@@ -10,7 +10,7 @@ function Sidebar({ showSidebar, setShowSidebar, node, navLinks }) {
   const router = useRouter();
   const [showSubMenu, setShowSubMenu] = useState("");
 
-  console.log("pathname", router.pathname);
+  // console.log("pathname", router.pathname);
 
   // console.log("usersession", data);
 
