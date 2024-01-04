@@ -301,7 +301,7 @@ function Table({ columns: columnsData, data: tableData }) {
     {
       columns,
       data,
-      initialState: { pageSize: 10 },
+      initialState: { pageSize: 100 },
       // defaultColumn: {
       //   minWidth: 150,
       // },
@@ -395,36 +395,38 @@ function Table({ columns: columnsData, data: tableData }) {
         </table>
       </div>
 
-      <div className="mt-5 flex justify-center items-center gap-3">
-        <button
-          className="text-gray-500 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          <IconArrowLeft />
-        </button>
+      {pageSize < data.length && (
+        <div className="mt-5 flex justify-center items-center gap-3">
+          <button
+            className="text-gray-500 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            <IconArrowLeft />
+          </button>
 
-        <div className="flex items-center gap-3">
-          {Array.from({ length: pageCount }, (_, i) => (
-            <button
-              key={i}
-              className={`size-8 flex justify-center items-center ${
-                i === pageIndex ? "bg-gray-200" : "hover:bg-gray-200"
-              } rounded-lg`}
-              onClick={() => gotoPage(i)}
-            >
-              {i + 1}
-            </button>
-          ))}
+          <div className="flex items-center gap-3">
+            {Array.from({ length: pageCount }, (_, i) => (
+              <button
+                key={i}
+                className={`size-8 flex justify-center items-center ${
+                  i === pageIndex ? "bg-gray-200" : "hover:bg-gray-200"
+                } rounded-lg`}
+                onClick={() => gotoPage(i)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+          <button
+            className="text-gray-500 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            <IconArrowRight />
+          </button>
         </div>
-        <button
-          className="text-gray-500 cursor-pointer disabled:pointer-events-none disabled:opacity-50"
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          <IconArrowRight />
-        </button>
-      </div>
+      )}
     </div>
   );
 }

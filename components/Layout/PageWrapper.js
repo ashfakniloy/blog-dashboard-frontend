@@ -1,8 +1,13 @@
+import useTheme from "@/hooks/useTheme";
+import { useSiteInfo } from "@/lib/store";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 function PageWrapper({ title, description, heading, isLoading, children }) {
   const { pathname } = useRouter();
+
+  // const { theme } = useSiteInfo();
+  const theme = useTheme();
 
   return (
     <>
@@ -17,16 +22,15 @@ function PageWrapper({ title, description, heading, isLoading, children }) {
             <h1 className="text-[35px] font-extrabold">{heading}</h1>
             {pathname === "/" && (
               <p className="text-sm font-medium">
-                Hi{" "}
-                <span className="text-custom-orange">
-                  Bayshore Communication
-                </span>
-                , Welcome back!
+                Hi {/* <span className="text-custom-orange"> */}
+                <span style={{ color: theme }}>Bayshore Communication</span>,
+                Welcome back!
               </p>
             )}
           </div>
           <div className="">
-            <p className="text-xl font-bold text-custom-orange">
+            {/* <p className="text-xl font-bold text-custom-orange"> */}
+            <p className="text-xl font-bold" style={{ color: theme }}>
               Bayshore Communication
             </p>
           </div>

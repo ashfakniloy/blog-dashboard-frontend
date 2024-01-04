@@ -29,10 +29,10 @@ function SitemapForm({ values }) {
                 // autoFocus
               />
               <div className="mt-5 flex items-center gap-5">
-                <Button type="submit" className="px-5">
+                <Button type="submit" className="px-9">
                   Save
                 </Button>
-                <Button type="button" className="px-5">
+                <Button type="button" className="px-9">
                   Generate
                 </Button>
               </div>

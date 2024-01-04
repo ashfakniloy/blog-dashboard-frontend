@@ -1,6 +1,7 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { InputField } from "../Fields/InputField";
+import { TextareaField } from "../Fields/TextareaField";
 
 function MediaForm({ image_title, alt_text }) {
   const initialValues = {
@@ -29,17 +30,25 @@ function MediaForm({ image_title, alt_text }) {
               className=""
               required
             />
-            <InputField
+            <TextareaField
+              label="Alt Text"
+              placeholder="Your text here"
+              name="alt_text"
+              // type="text"
+              className=""
+              required
+            />
+            {/* <InputField
               label="Alt Text"
               placeholder="Your text here"
               name="alt_text"
               type="text"
               className=""
               required
-            />
+            /> */}
 
             <div className="mt-5">
-              <Button type="submit" className="px-5">
+              <Button type="submit" className="px-8">
                 Save
               </Button>
             </div>

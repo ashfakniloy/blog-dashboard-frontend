@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: "images.pexels.com",
         // hostname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        // hostname: "**",
+      },
     ],
   },
 };

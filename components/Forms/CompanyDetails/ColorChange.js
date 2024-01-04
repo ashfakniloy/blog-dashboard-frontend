@@ -1,16 +1,22 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import ColorPickerField from "../Fields/ColorPickerField";
+import { useSiteInfo } from "@/lib/store";
 
 function ColorChange({ color }) {
+  const { setTheme } = useSiteInfo();
+
+  if (!color) return;
+
   const initialValues = {
-    color: color || "",
+    color: color,
   };
 
   const handleSubmit = (values, formik) => {
     console.log("values", values);
     // setIsSubmitted(true);
     // formik.resetForm();
+    setTheme(values.color);
   };
 
   return (

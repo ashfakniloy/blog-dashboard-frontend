@@ -27,7 +27,8 @@ function SearchConsoleForm() {
                 <InputField
                   name="search_console"
                   type="text"
-                  className="bg-transparent border-2 border-blue-500 focus:border-blue-600"
+                  // className="bg-transparent border-2 border-blue-500 focus:border-blue-600"
+                  className="bg-transparent  border-gray-400"
                   required
                 />
                 <p className="mt-3 text-sm font-medium">

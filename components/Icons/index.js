@@ -15,3 +15,6 @@ export { IconEdit } from "./IconEdit";
 export { IconArrowLeft } from "./IconArrowLeft";
 export { IconArrowRight } from "./IconArrowRight";
 export { IconPaperPlus } from "./IconPaperPlus";
+export { IconTick } from "./IconTick";
+export { IconCloudArrow } from "./IconCloudArrow";
+export { IconX } from "./IconX";

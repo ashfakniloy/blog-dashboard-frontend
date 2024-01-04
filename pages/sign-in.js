@@ -1,43 +1,25 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { Form, Formik } from "formik";
-import OtpForm from "@/components/Forms/OtpForm";
-import SigninForm from "@/components/Forms/SigninForm";
+import useSignin from "@/hooks/useSignin";
 import PageWrapper from "@/components/Layout/PageWrapper";
+import { EmailField } from "@/components/Forms/Fields/EmailField";
+import { PasswordField } from "@/components/Forms/Fields/PasswordField";
+import { CheckboxField } from "@/components/Forms/Fields/CheckboxField";
+import Button from "@/components/ui/Button";
+import { Spinner } from "@/components/LoadingSpinner/Spinner";
 
 function SigninPage() {
-  const [step, setStep] = useState(1);
-
-  const router = useRouter();
+  const { signin } = useSignin();
 
   const initialValues = {
-    email: "",
-    password: "",
-    otp: "",
+    email: "kha9647@gmail.com",
+    password: "rana6879",
     rememberMe: false,
   };
 
-  const handleSubmit = async (values, formik) => {
-    if (step === 1) {
-      const values1 = {
-        email: values.email,
-        password: values.password,
-      };
-
-      setStep(2);
-
-      console.log("step 1 values", values1);
-    } else if (step === 2) {
-      const values2 = {
-        email: values.email,
-        otp: values.otp,
-      };
-
-      console.log(values2);
-      formik.resetForm();
-      router.push("/");
-    }
+  const handleSubmit = async (values) => {
+    // console.log(values);
+    await signin(values);
   };
 
   return (
@@ -66,9 +48,42 @@ function SigninPage() {
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
-              <Form className="">
-                {step === 1 && <SigninForm />}
-                {step === 2 && <OtpForm />}
+              <Form className="w-[400px] h-[536px] 2xl:w-[473px] 2xl:h-[616px] px-10 bg-white rounded-2xl shadow-lg">
+                <div className="pt-[68px] flex flex-col items-center font-manrope">
+                  <h1 className="text-2xl font-bold">Welcome Back !</h1>
+                  <p className="text-custom-red">Sign in to continue</p>
+                </div>
+
+                <div className="mt-[54px] w-full">
+                  <div className="space-y-9">
+                    <EmailField placeholder="Email" name="email" required />
+                    <PasswordField
+                      placeholder="Password"
+                      name="password"
+                      required
+                    />
+                  </div>
+
+                  <div className="mt-9">
+                    <div className="mb-3.5">
+                      <CheckboxField label="Remember me" name="rememberMe" />
+                    </div>
+                    {
+                      <Button
+                        type="submit"
+                        className="w-full py-3 rounded-md relative  items-center"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting && (
+                          <span className="absolute left-24 2xl:left-32">
+                            <Spinner />
+                          </span>
+                        )}
+                        Log in
+                      </Button>
+                    }
+                  </div>
+                </div>
               </Form>
             )}
           </Formik>
@@ -79,3 +94,85 @@ function SigninPage() {
 }
 
 export default SigninPage;
+
+// import { useState } from "react";
+// import { useRouter } from "next/router";
+// import Image from "next/image";
+// import { Form, Formik } from "formik";
+// import OtpForm from "@/components/Forms/OtpForm";
+// import SigninForm from "@/components/Forms/SigninForm";
+// import PageWrapper from "@/components/Layout/PageWrapper";
+
+// function SigninPage() {
+//   const [step, setStep] = useState(1);
+
+//   const router = useRouter();
+
+//   const initialValues = {
+//     email: "",
+//     password: "",
+//     otp: "",
+//     rememberMe: false,
+//   };
+
+//   const handleSubmit = async (values, formik) => {
+//     if (step === 1) {
+//       const values1 = {
+//         email: values.email,
+//         password: values.password,
+//       };
+
+//       setStep(2);
+
+//       console.log("step 1 values", values1);
+//     } else if (step === 2) {
+//       const values2 = {
+//         email: values.email,
+//         otp: values.otp,
+//       };
+
+//       console.log(values2);
+//       formik.resetForm();
+//       router.push("/");
+//     }
+//   };
+
+//   return (
+//     <PageWrapper title="Sign in" description="sign in">
+//       <div className="min-h-screen flex bg-custom-gray3">
+//         <div className="flex-1 flex relative">
+//           <div className="flex items-center w-[70%] justify-center z-10 text-5xl font-bold bg-white text-black">
+//             {/* <div className="relative w-[461px] h-[286px]"> */}
+//             <div className="ml-[20%] relative w-[340px] h-[210px]">
+//               <Image
+//                 src="/images/static-logo.png"
+//                 alt="static logo"
+//                 fill
+//                 className="object-cover"
+//               />
+//             </div>
+//           </div>
+
+//           <div className="absolute inset-y-0 right-[15%] w-[30%] bg-white -skew-x-[16deg]"></div>
+//         </div>
+
+//         <div className="flex-1 flex justify-center items-center">
+//           <Formik
+//             initialValues={initialValues}
+//             // validationSchema={validate}
+//             onSubmit={handleSubmit}
+//           >
+//             {({ isSubmitting }) => (
+//               <Form className="">
+//                 {step === 1 && <SigninForm />}
+//                 {step === 2 && <OtpForm />}
+//               </Form>
+//             )}
+//           </Formik>
+//         </div>
+//       </div>
+//     </PageWrapper>
+//   );
+// }
+
+// export default SigninPage;

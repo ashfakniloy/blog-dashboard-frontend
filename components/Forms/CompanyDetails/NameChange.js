@@ -1,4 +1,4 @@
-import { InputField } from "../Fields/InputField";
+import { InputField2 } from "../Fields/InputField";
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
@@ -27,10 +27,9 @@ function NameChange({ name }) {
             <label htmlFor="">Name</label>
             <div className="flex w-full items-center gap-5">
               {isSelected ? (
-                <InputField
+                <InputField2
                   name="name"
                   type="text"
-                  className="w-full bg-transparent text-2xl pl-0.5 py-0 border-0 font-bold text-gray-600"
                   required
                   autoFocus={isSelected}
                 />

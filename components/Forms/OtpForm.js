@@ -55,7 +55,7 @@ function OtpForm({ isLoading }) {
           onChange={(otp) => handleOtpChange(otp)}
           numInputs={maxOtpLength}
           // renderSeparator={<span className="text-lg font-bold"> - </span>}
-          inputStyle="!w-10 h-10 border-b-2 border-gray-600 focus:border-black outline-none"
+          inputStyle="!w-10 h-10 selection:bg-gray-200 border-b-2 border-gray-600 focus:border-black outline-none"
           containerStyle="flex justify-between mt-2"
           shouldAutoFocus
           renderInput={(props) => <input {...props} />}
