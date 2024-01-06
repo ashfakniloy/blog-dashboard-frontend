@@ -1,9 +1,30 @@
 import { useRouter } from "next/router";
 import Sidebar from "./Sidebar";
 import { navLinks } from "./navLinks";
+import useGetData from "@/hooks/useGetData";
+import { useSiteInfo } from "@/lib/store";
+import { useEffect } from "react";
 
 function Layout({ children }) {
   const { pathname } = useRouter();
+
+  const { setUsername, setLogo } = useSiteInfo();
+
+  const {
+    data: settingsData,
+    // isLoading,
+    isPending,
+    isError,
+    isFetched,
+    isSuccess,
+  } = useGetData({ path: "/user/setting" });
+
+  // console.log("settingsdata", settingsData);
+
+  useEffect(() => {
+    settingsData?.data.name && setUsername(settingsData.data.name);
+    settingsData?.data.logo && setLogo(settingsData.data.logo);
+  }, [settingsData]);
 
   if (pathname === "/sign-in") {
     return <>{children}</>;

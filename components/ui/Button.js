@@ -1,5 +1,5 @@
 import useTheme from "@/hooks/useTheme";
-import { useSiteInfo } from "@/lib/store";
+// import { useSiteInfo } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 function Button({

@@ -2,16 +2,35 @@ import PageWrapper from "@/components/Layout/PageWrapper";
 import Table from "@/components/Table";
 import { blogsColumn } from "@/components/Table/columns/blogs-column";
 import LinkButton from "@/components/ui/LinkButton";
-import { blogsData } from "@/mockData/blogsData";
+import useGetData from "@/hooks/useGetData";
+// import { blogsData } from "@/mockData/blogsData";
 
 function BlogPage() {
+  const {
+    data: blogsData,
+    // isLoading,
+    isPending,
+    isError,
+  } = useGetData({ path: "/blog" });
+
+  console.log("blogdata", blogsData);
+
   return (
-    <PageWrapper title="Blog" description="blog" heading="All Blogs">
+    <PageWrapper
+      title="Blog"
+      description="blog"
+      heading="All Blogs"
+      isLoading={isPending}
+    >
       <div className="mt-10 flex justify-end">
         <LinkButton href="/blog/add-blog">New Post</LinkButton>
       </div>
 
-      {blogsData && <Table columns={blogsColumn} data={blogsData} />}
+      {blogsData?.data?.length ? (
+        <Table columns={blogsColumn} data={blogsData.data} />
+      ) : (
+        <p className="mt-10 text-center font-bold text-lg">No blogs found</p>
+      )}
     </PageWrapper>
   );
 }

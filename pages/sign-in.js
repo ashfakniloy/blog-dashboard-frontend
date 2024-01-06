@@ -71,7 +71,7 @@ function SigninPage() {
                     {
                       <Button
                         type="submit"
-                        className="w-full py-3 rounded-md relative  items-center"
+                        className="w-full py-3 rounded-md relative"
                         disabled={isSubmitting}
                       >
                         {isSubmitting && (

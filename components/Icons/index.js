@@ -18,3 +18,5 @@ export { IconPaperPlus } from "./IconPaperPlus";
 export { IconTick } from "./IconTick";
 export { IconCloudArrow } from "./IconCloudArrow";
 export { IconX } from "./IconX";
+export { IconSend } from "./IconSend";
+export { IconDraft } from "./IconDraft";

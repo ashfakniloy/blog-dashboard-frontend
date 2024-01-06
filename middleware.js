@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 export default async function middleware(req) {
-  const { origin, pathname } = req.nextUrl;
+  const { pathname } = req.nextUrl;
 
   const secret = process.env.NEXTAUTH_SECRET;
 
@@ -10,11 +10,11 @@ export default async function middleware(req) {
 
   if (pathname !== "/sign-in") {
     if (!token) {
-      return NextResponse.redirect(`${origin}/sign-in`);
+      return NextResponse.redirect(new URL("/sign-in", req.url));
     }
   } else {
     if (token) {
-      return NextResponse.redirect(`${origin}`);
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 

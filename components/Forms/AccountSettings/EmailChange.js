@@ -1,18 +1,34 @@
-import { InputField2 } from "../Fields/InputField";
-import { Form, Formik } from "formik";
-import Button from "@/components/ui/Button";
 import { useState } from "react";
+import { Form, Formik } from "formik";
+import { toast } from "sonner";
+import { InputField2 } from "../Fields/InputField";
+import Button from "@/components/ui/Button";
+import usePostData from "@/hooks/usePostData";
 
 function EmailChange({ currentEmail }) {
   const [isSelected, setIsSelected] = useState(false);
+  const [emailState, setEmailState] = useState(currentEmail);
 
   const initialValues = {
     email: currentEmail || "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("values", values);
-    // setIsSelected(false);
+  const { mutate, isPending } = usePostData({
+    path: "/user/change/email",
+    revalidate: "/user/setting",
+  });
+
+  const handleSubmit = (values, formik) => {
+    // console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Email changed successfully`);
+        formik.resetForm();
+        setEmailState(values.email);
+        setIsSelected(false);
+      },
+    });
   };
 
   return (
@@ -21,6 +37,7 @@ function EmailChange({ currentEmail }) {
         initialValues={initialValues}
         // validationSchema={validate}
         onSubmit={handleSubmit}
+        enableReinitialize
       >
         {({ isSubmitting, resetForm }) => (
           <Form className="">
@@ -35,7 +52,8 @@ function EmailChange({ currentEmail }) {
                 />
               ) : (
                 <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
-                  {currentEmail}
+                  {/* {currentEmail} */}
+                  {emailState}
                 </p>
               )}
               {!isSelected ? (
@@ -56,10 +74,15 @@ function EmailChange({ currentEmail }) {
                       setIsSelected(false);
                       resetForm();
                     }}
+                    disabled={isPending}
                   >
                     Cancel
                   </Button>
-                  <Button type="submit" className="w-[100px]">
+                  <Button
+                    type="submit"
+                    className="w-[100px]"
+                    disabled={isPending}
+                  >
                     Save
                   </Button>
                 </div>

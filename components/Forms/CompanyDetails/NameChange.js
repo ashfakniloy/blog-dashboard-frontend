@@ -2,17 +2,35 @@ import { InputField2 } from "../Fields/InputField";
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
+import usePostData from "@/hooks/usePostData";
+import { toast } from "sonner";
 
 function NameChange({ name }) {
   const [isSelected, setIsSelected] = useState(false);
+  const [nameState, setNameState] = useState(name);
 
   const initialValues = {
     name: name || "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("values", values);
-    // setIsSelected(false);
+  const { mutate, isPending, isSuccess, variables } = usePostData({
+    path: "/user/change/name",
+    revalidate: "/user/setting",
+  });
+
+  console.log("variables", variables);
+
+  const handleSubmit = (values, formik) => {
+    // console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Name changed successfully`);
+        formik.resetForm();
+        setNameState(values.name);
+        setIsSelected(false);
+      },
+    });
   };
 
   return (
@@ -20,9 +38,10 @@ function NameChange({ name }) {
       <Formik
         initialValues={initialValues}
         // validationSchema={validate}
+        enableReinitialize
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, resetForm }) => (
+        {({ isSubmitting, resetForm, values }) => (
           <Form className="">
             <label htmlFor="">Name</label>
             <div className="flex w-full items-center gap-5">
@@ -35,7 +54,9 @@ function NameChange({ name }) {
                 />
               ) : (
                 <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
-                  {name}
+                  {/* {name} */}
+                  {nameState}
+                  {/* {isPending ? variables.name : name} */}
                 </p>
               )}
               {!isSelected ? (
@@ -56,10 +77,15 @@ function NameChange({ name }) {
                       setIsSelected(false);
                       resetForm();
                     }}
+                    disabled={isPending}
                   >
                     Cancel
                   </Button>
-                  <Button type="submit" className="w-[100px]">
+                  <Button
+                    type="submit"
+                    className="w-[100px]"
+                    disabled={isPending}
+                  >
                     Save
                   </Button>
                 </div>

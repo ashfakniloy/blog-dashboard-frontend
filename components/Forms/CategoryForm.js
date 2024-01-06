@@ -1,8 +1,11 @@
 import { Form, Formik } from "formik";
-import React from "react";
+import slugify from "slugify";
+import { toast } from "sonner";
 import { InputField } from "./Fields/InputField";
 import Button from "../ui/Button";
 import { TextareaField } from "./Fields/TextareaField";
+import usePostData from "@/hooks/usePostData";
+import { Spinner } from "../LoadingSpinner/Spinner";
 
 function CategoryForm() {
   const initialValues = {
@@ -11,9 +14,22 @@ function CategoryForm() {
     description: "",
   };
 
-  const handleSubmit = async (values, formik) => {
-    console.log("values", values);
+  const { mutate, isPending } = usePostData({
+    path: "/category",
+    revalidate: "/category",
+  });
+
+  const handleSubmit = (values, formik) => {
+    // console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Category ${values.name} added`);
+        formik.resetForm();
+      },
+    });
   };
+
   return (
     <div className="mt-8">
       <Formik
@@ -21,7 +37,7 @@ function CategoryForm() {
         // validationSchema={validate}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className="">
             <div className="space-y-9 w-full">
               <div className="flex items-center w-full gap-14">
@@ -31,6 +47,11 @@ function CategoryForm() {
                   name="name"
                   type="text"
                   required
+                  onChange={(e) => {
+                    setFieldValue("name", e.target.value);
+                    const slug = slugify(e.target.value, { lower: true });
+                    setFieldValue("slug", slug);
+                  }}
                 />
                 <InputField
                   label="Slug:"
@@ -49,10 +70,13 @@ function CategoryForm() {
                 required
               />
             </div>
-            <div className="mt-6">
-              <Button type="submit" className="px-6">
+            <div className="mt-6 flex items-center gap-3">
+              <Button type="submit" className="px-6" disabled={isPending}>
                 Create New Category
               </Button>
+              {isPending && (
+                <Spinner className="border-gray-400 border-r-gray-400/30 border-b-gray-400/30" />
+              )}
             </div>
           </Form>
         )}

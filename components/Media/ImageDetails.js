@@ -1,11 +1,15 @@
-import { useRef, useState } from "react";
-import MediaForm from "../Forms/SeoSettings/MediaForm";
+import { useEffect, useRef, useState } from "react";
+import MediaForm from "./MediaForm";
 import { getFormattedDate } from "@/utils/getFormattedDate";
 import { ScrollArea } from "../ui/scroll-area";
 
 function ImageDetails({ selectedImage }) {
   const imageRef = useRef();
   const [imageSize, setImageSize] = useState(null);
+
+  const [imageTitleState, setImageTitleState] = useState(
+    selectedImage.imageTitle
+  );
 
   const handleImageLoad = () => {
     const { naturalWidth, naturalHeight } = imageRef.current;
@@ -19,17 +23,18 @@ function ImageDetails({ selectedImage }) {
         <div className="mt-3 flex items-center gap-5">
           <div className="max-w-[200px] 2xl:max-w-[320px] max-h-[380px] overflow-hidden">
             <img
-              key={selectedImage.id}
+              key={selectedImage._id}
               ref={imageRef}
-              src={selectedImage.src}
-              alt={selectedImage.alt}
+              src={selectedImage.image.url}
+              alt={selectedImage.altText}
               onLoad={handleImageLoad}
             />
           </div>
 
           <div className="text-sm text-gray-500 leading-6">
-            <p className="font-semibold">{selectedImage.title}</p>
-            <p className="">{getFormattedDate(selectedImage.time)}</p>
+            {/* <p className="font-semibold">{selectedImage.imageTitle}</p> */}
+            <p className="font-semibold">{imageTitleState}</p>
+            <p className="">{getFormattedDate(selectedImage.createdAt)}</p>
             <p className="">
               {imageSize?.width} x {imageSize?.height}
             </p>
@@ -40,9 +45,11 @@ function ImageDetails({ selectedImage }) {
 
       <div className="p-5 2xl:p-7 pb-[140px] w-[80%]">
         <MediaForm
-          key={selectedImage.id}
-          image_title={selectedImage.title}
-          alt_text={selectedImage.alt}
+          key={selectedImage._id}
+          id={selectedImage._id}
+          imageTitle={selectedImage.imageTitle}
+          altText={selectedImage.altText}
+          setImageTitleState={setImageTitleState}
         />
       </div>
     </ScrollArea>

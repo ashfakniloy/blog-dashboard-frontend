@@ -1,16 +1,32 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { InputField } from "../Fields/InputField";
-import { TextareaField } from "../Fields/TextareaField";
+import { InputField } from "../Forms/Fields/InputField";
+import { TextareaField } from "../Forms/Fields/TextareaField";
+import usePostData from "@/hooks/usePostData";
+import { Spinner } from "../LoadingSpinner/Spinner";
+import { toast } from "sonner";
 
-function MediaForm({ image_title, alt_text }) {
+function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
   const initialValues = {
-    image_title: image_title || "",
-    alt_text: alt_text || "",
+    imageTitle: imageTitle || "",
+    altText: altText || "",
   };
+
+  const { mutate, isPending } = usePostData({
+    path: `/media/edit/${id}`,
+    revalidate: "/media",
+  });
 
   const handleSubmit = (values) => {
     console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Image details edited`);
+        setImageTitleState(values.imageTitle);
+        // formik.resetForm();
+      },
+    });
   };
 
   return (
@@ -19,13 +35,14 @@ function MediaForm({ image_title, alt_text }) {
         initialValues={initialValues}
         // validationSchema={validate}
         onSubmit={handleSubmit}
+        enableReinitialize
       >
         {({ isSubmitting }) => (
           <Form className="space-y-5">
             <InputField
               label="Image Title:"
               placeholder="Your text here"
-              name="image_title"
+              name="imageTitle"
               type="text"
               className=""
               required
@@ -33,7 +50,7 @@ function MediaForm({ image_title, alt_text }) {
             <TextareaField
               label="Alt Text"
               placeholder="Your text here"
-              name="alt_text"
+              name="altText"
               // type="text"
               className=""
               required
@@ -41,16 +58,19 @@ function MediaForm({ image_title, alt_text }) {
             {/* <InputField
               label="Alt Text"
               placeholder="Your text here"
-              name="alt_text"
+              name="altText"
               type="text"
               className=""
               required
             /> */}
 
-            <div className="mt-5">
-              <Button type="submit" className="px-8">
+            <div className="mt-5 flex items-center gap-3">
+              <Button type="submit" className="px-8" disabled={isPending}>
                 Save
               </Button>
+              {isPending && (
+                <Spinner className="border-gray-400 border-r-gray-400/30 border-b-gray-400/30" />
+              )}
             </div>
           </Form>
         )}

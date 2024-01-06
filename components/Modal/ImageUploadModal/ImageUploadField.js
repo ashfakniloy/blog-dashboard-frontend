@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import useTheme from "@/hooks/useTheme";
-import Button from "@/components/ui/Button";
 import { IconCloudArrow } from "@/components/Icons";
+import { toast } from "sonner";
+import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import ImageSubmitForm from "./ImageSubmitForm";
+import Button from "@/components/ui/Button";
+import LogoSubmit from "./LogoSubmit";
 
 function ImageUploadField({
   imageUploading,
   setImageUploading,
   setImageUploaded,
   setShowImageModal,
+  isLogo,
+  setFieldValue,
 }) {
   const theme = useTheme();
 
@@ -26,6 +32,7 @@ function ImageUploadField({
 
     if (image.size > imageMaxSize * 1024) {
       console.log("Image size exceeds the limit");
+      toast.error("Image size exceeds the limit");
       return;
     }
 
@@ -34,9 +41,9 @@ function ImageUploadField({
     // console.log("images", image);
     // return;
 
-    const cloud_name = "";
-    const preset = "";
-    const folder = "";
+    const cloud_name = "db56mzvzc";
+    const preset = "blog-dashboard";
+    const folder = "blog-dashboard";
 
     const formData = new FormData();
     formData.append("file", image);
@@ -67,9 +74,14 @@ function ImageUploadField({
       } else {
         console.log("error", data);
         setImage(null);
+        setShowImageModal(false);
+        toast.error("Image upload failed, try again");
       }
     } catch (error) {
       console.log("error", error);
+      setImage(null);
+      setShowImageModal(false);
+      toast.error("Image upload failed, try again");
     }
 
     setImageUploading(false);
@@ -111,6 +123,7 @@ function ImageUploadField({
 
     if (e.dataTransfer.files.length > 1) {
       console.log("single image only");
+      toast.error("Single image only");
       return;
     }
 
@@ -118,6 +131,7 @@ function ImageUploadField({
 
     if (droppedImage.size > imageMaxSize * 1024) {
       console.log("Image size exceeds the limit");
+      toast.error("Image size exceeds the limit");
       return;
     }
 
@@ -168,14 +182,19 @@ function ImageUploadField({
           </label>
         </div>
       ) : (
-        <div className="w-full h-full border-2 border-transparent bg-black">
+        <div className="w-full h-full border-2 border-transparent bg-black rounded-lg">
           {imageUploading ? (
-            <Image
-              src={imagePreview}
-              alt="image uploaded preview"
-              fill
-              className="object-cover blur-sm opacity-50 "
-            />
+            <>
+              <Image
+                src={imagePreview}
+                alt="image uploaded preview"
+                fill
+                className="object-cover blur-md opacity-50 rounded-lg"
+              />
+              <div className="absolute inset-0 flex justify-center items-center">
+                <Spinner className="size-20 border-[6px]" />
+              </div>
+            </>
           ) : (
             imageUrl && (
               <>
@@ -183,18 +202,36 @@ function ImageUploadField({
                   src={imageUrl}
                   alt="image uploaded result"
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-lg"
                 />
 
-                <div className="mt-8 absolute right-3 bottom-3">
-                  <Button
+                {/* <div className="absolute inset-y-0 right-[-1px] border-2 border-white w-[240px] pl-5 h-full bg-white"> */}
+                {!isLogo ? (
+                  <div className="absolute inset-0 flex justify-center items-center h-full">
+                    <div className=" w-[330px] px-7 py-5 bg-white rounded-lg">
+                      <ImageSubmitForm
+                        imageId={imageId}
+                        imageUrl={imageUrl}
+                        setShowImageModal={setShowImageModal}
+                        setFieldValue={setFieldValue}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-8 absolute right-3 bottom-3">
+                    <LogoSubmit
+                      logo={imageUrl}
+                      setShowImageModal={setShowImageModal}
+                    />
+                    {/* <Button
                     type="button"
                     className="w-[150px] font-medium"
                     onClick={() => setShowImageModal(false)}
                   >
-                    Done
-                  </Button>
-                </div>
+                    Submit
+                  </Button> */}
+                  </div>
+                )}
               </>
             )
           )}

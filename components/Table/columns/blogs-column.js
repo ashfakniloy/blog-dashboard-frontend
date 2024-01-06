@@ -9,21 +9,27 @@ export const blogsColumn = [
   },
   {
     Header: "Meta Description",
-    accessor: "meta_desc",
+    accessor: "metaDescription",
   },
   {
     Header: "Status",
-    accessor: "status",
-    // minWidth: 400,
-    // width: 200,
+    accessor: "published",
+    Cell: ({ row }) => <>{row.original.published ? "Publish" : "Draft"}</>,
   },
+  // {
+  //   Header: "Status",
+  //   accessor: "status",
+  //   // minWidth: 400,
+  //   // width: 200,
+  // },
   {
     Header: "Action",
     accessor: "_id",
     disableSortBy: true,
     width: 200,
     Cell: ({ row }) => (
-      <div className="flex justify-center items-center gap-2">
+      // <div className="flex justify-center items-center gap-2">
+      <div className="flex items-center gap-2">
         <DeleteBlog blogInfo={row.original} />
 
         <div className="">

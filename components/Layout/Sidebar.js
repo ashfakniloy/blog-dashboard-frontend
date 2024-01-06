@@ -5,12 +5,15 @@ import { IconLogout } from "../Icons/IconLogout";
 import { useSiteInfo } from "@/lib/store";
 import useTheme from "@/hooks/useTheme";
 import useSignout from "@/hooks/useSignout";
+import useLogo from "@/hooks/useLogo";
 
 function Sidebar({ navLinks }) {
   const router = useRouter();
   // const { theme } = useSiteInfo();
 
   const theme = useTheme();
+  const logo = useLogo();
+  const { setUsername } = useSiteInfo();
 
   const { signout } = useSignout();
 
@@ -64,12 +67,15 @@ function Sidebar({ navLinks }) {
       <div className="mb-5">
         <div className="px-[47px] py-9">
           <div className="relative w-[155px] h-[96px]">
-            <Image
-              src="/images/static-logo.png"
-              alt="static logo"
-              fill
-              className="object-cover"
-            />
+            {logo && (
+              <Image
+                // src="/images/static-logo.png"
+                src={logo}
+                alt="static logo"
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
         </div>
 
@@ -109,7 +115,10 @@ function Sidebar({ navLinks }) {
                 color: "white",
               },
             }}
-            onClick={() => signout()}
+            onClick={() => {
+              signout();
+              setUsername(null);
+            }}
           >
             <div className="flex items-center gap-3">
               <span style={{ color: theme }}>

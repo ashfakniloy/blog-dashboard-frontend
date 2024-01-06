@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import ImageUploadContent from "./ImageUploadContent";
 
-function ImageUploadModal({ children, withLibrary }) {
+function ImageUploadModal({ children, withLibrary, isLogo, setFieldValue }) {
   const [showImageModal, setShowImageModal] = useState(false);
 
   return (
@@ -15,10 +15,12 @@ function ImageUploadModal({ children, withLibrary }) {
         {children}
       </AlertDialogTrigger>
 
-      <AlertDialogContent>
+      <AlertDialogContent className="min-w-[765px] 2xl:min-w-[950px] rounded-xl bg-white">
         <ImageUploadContent
           setShowImageModal={setShowImageModal}
           withLibrary={withLibrary}
+          isLogo={isLogo}
+          setFieldValue={setFieldValue}
         />
       </AlertDialogContent>
     </AlertDialog>
