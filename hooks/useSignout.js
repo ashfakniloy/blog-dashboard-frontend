@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 function useSignout() {
   const signout = () => {

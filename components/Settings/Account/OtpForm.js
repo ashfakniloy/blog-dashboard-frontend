@@ -53,8 +53,8 @@ function OtpForm({ setFieldValue, values, setShowOtpField }) {
     // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
-        setShowOtpField(false);
         signout();
+        setShowOtpField(false);
       },
     });
   };

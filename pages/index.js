@@ -1,4 +1,5 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
+import useGetData from "@/hooks/useGetData";
 
 // import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
@@ -36,9 +37,52 @@ import PageWrapper from "@/components/Layout/PageWrapper";
 // };
 
 export default function Home() {
+  const { data: dashboardData, isPending } = useGetData({
+    path: "/user/dashboard",
+  });
+
+  console.log("data", dashboardData);
+
+  const messagesCount = [
+    {
+      name: "Today",
+      count: dashboardData?.data.todayFound,
+    },
+    {
+      name: "This Month",
+      count: dashboardData?.data.thisMonthFound,
+    },
+    {
+      name: "Total",
+      count: dashboardData?.data.totalFound,
+    },
+  ];
+
   return (
-    <PageWrapper title="Dashboard" description="dashboard" heading="Dashboard">
-      <div className="">Homepage</div>
+    <PageWrapper
+      title="Dashboard"
+      description="dashboard"
+      heading="Dashboard"
+      isLoading={isPending}
+    >
+      <div className="mt-5">
+        {dashboardData?.data && (
+          <div className="">
+            <p className="text-[35px] font-bold">Messages</p>
+            <div className="mt-4 flex justify-between items-center gap-5">
+              {messagesCount.map((message) => (
+                <div
+                  key={message.name}
+                  className="h-[90px] 2xl:h-[100px] w-full flex justify-center items-center gap-3 rounded-2xl bg-custom-orange text-white"
+                >
+                  <span className="text-[25px] font-bold">{message.count}</span>
+                  <span className="text-xl">{message.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </PageWrapper>
   );
 }
