@@ -9,8 +9,6 @@ import useLogo from "@/hooks/useLogo";
 
 function Sidebar({ navLinks }) {
   const router = useRouter();
-  // const { theme } = useSiteInfo();
-
   const theme = useTheme();
   const logo = useLogo();
   const { setUsername } = useSiteInfo();
@@ -95,7 +93,7 @@ function Sidebar({ navLinks }) {
                       {navLink.icon}
                     </span>
 
-                    <p className="">{navLink.name}</p>
+                    <p>{navLink.name}</p>
                   </div>
                 </div>
               </Link>
@@ -106,15 +104,11 @@ function Sidebar({ navLinks }) {
             type="button"
             className={`px-6 py-2 flex justify-between items-center group font-semibold transition-colors duration-200 rounded-full w-[160px] hover:bg-gray-100`}
             // style={{
-            //   backgroundColor: isActive ? theme : "", // Apply theme background color when active
-            //   color: "white",
+            //   ":active": {
+            //     backgroundColor: theme,
+            //     color: "white",
+            //   },
             // }}
-            style={{
-              ":active": {
-                backgroundColor: theme,
-                color: "white",
-              },
-            }}
             onClick={() => {
               signout();
               setUsername(null);
@@ -124,23 +118,9 @@ function Sidebar({ navLinks }) {
               <span style={{ color: theme }}>
                 <IconLogout />
               </span>
-              <p className="">Logout</p>
+              <p>Logout</p>
             </div>
           </button>
-
-          {/* <button
-            type="button"
-            className={`px-6 py-2 flex justify-between items-center group font-semibold transition-colors duration-300 rounded-full w-[160px] hover:bg-[#37b546]/10 active:bg-custom-orange active:text-white`}
-            onClick={() => router.push("/sign-in")}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-custom-orange group-active:text-white group-active:transition-colors group-active:duration-300">
-                <IconLogout />
-              </span>
-
-              <p className="">Logout</p>
-            </div>
-          </button> */}
         </div>
       </div>
     </div>

@@ -33,7 +33,10 @@ export const blogsColumn = [
         <DeleteBlog blogInfo={row.original} />
 
         <div className="">
-          <Link href="/blog/edit-blog" className="text-black">
+          <Link
+            href={`/blog/edit-blog/${row.original.slug}`}
+            className="text-black"
+          >
             <IconEdit />
           </Link>
         </div>

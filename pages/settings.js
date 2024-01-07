@@ -1,9 +1,9 @@
-import AccountSettings from "@/components/Forms/AccountSettings";
-import CompanyDetails from "@/components/Forms/CompanyDetails";
-import SeoSettings from "@/components/Forms/SeoSettings";
+import AccountSettings from "@/components/Settings/Account";
+import CompanyDetails from "@/components/Settings/Company";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import useGetData from "@/hooks/useGetData";
 import useTheme from "@/hooks/useTheme";
+import SeoSettings from "@/components/Settings/Seo";
 // import { useSiteInfo } from "@/lib/store";
 
 function SettingsPage() {

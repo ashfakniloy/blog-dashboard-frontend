@@ -89,9 +89,9 @@ const TextEditor = () => {
   return (
     <div>
       <Toolbar editor={editor} />
-      <div>
-        <EditorContent editor={editor} required={true} />
-      </div>
+      {/* <div> */}
+      <EditorContent editor={editor} required={true} />
+      {/* </div> */}
     </div>
   );
 };

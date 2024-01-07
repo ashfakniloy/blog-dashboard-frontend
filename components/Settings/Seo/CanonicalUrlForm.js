@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { InputField } from "../Fields/InputField";
+import { InputField } from "../../FormFields/InputField";
 
 function CanonicalUrlForm() {
   const initialValues = {
@@ -13,11 +13,7 @@ function CanonicalUrlForm() {
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validate}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="">
             <InputField

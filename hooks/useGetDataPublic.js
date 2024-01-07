@@ -1,20 +1,14 @@
-import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API_URL } from "@/config";
 
-function useGetData({ path }) {
-  const { data: session } = useSession();
-
-  const token = session?.user?.token;
-
+function useGetDataPublic({ path }) {
   const url = `${API_URL}${path}`;
 
   const fetcher = async () => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -24,9 +18,8 @@ function useGetData({ path }) {
   return useQuery({
     queryKey: [path],
     queryFn: fetcher,
-    enabled: !!session,
     retry: false,
   });
 }
 
-export default useGetData;
+export default useGetDataPublic;

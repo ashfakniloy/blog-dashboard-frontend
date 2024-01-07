@@ -6,12 +6,7 @@ import useGetData from "@/hooks/useGetData";
 // import { blogsData } from "@/mockData/blogsData";
 
 function BlogPage() {
-  const {
-    data: blogsData,
-    // isLoading,
-    isPending,
-    isError,
-  } = useGetData({ path: "/blog" });
+  const { data: blogsData, isPending } = useGetData({ path: "/blog" });
 
   console.log("blogdata", blogsData);
 

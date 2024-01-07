@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 
 export const CheckboxField = ({ label, className, ...props }) => {
   return (
@@ -8,9 +8,6 @@ export const CheckboxField = ({ label, className, ...props }) => {
     >
       <Field id={label} type="checkbox" className="cursor-pointer" {...props} />
       <span className="">{label}</span>
-      {/* <p className="absolute text-xs text-red-600 -bottom-4">
-            <ErrorMessage {...props} />
-          </p> */}
     </label>
   );
 };

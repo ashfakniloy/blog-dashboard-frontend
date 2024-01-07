@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 // import { mediaData } from "@/mockData/mediaData";
 import useGetData from "@/hooks/useGetData";
-import { PageSpinner, Spinner } from "@/components/LoadingSpinner/Spinner";
+import { PageSpinner, Spinner } from "@/components/Loading/Spinner";
 import { useFormikContext } from "formik";
 
 function ImageLibrary({ setShowImageModal }) {

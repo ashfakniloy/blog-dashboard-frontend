@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { TextareaField } from "../Fields/TextareaField";
+import { TextareaField } from "../../FormFields/TextareaField";
 
 function SitemapForm({ values }) {
   const initialValues = {
@@ -13,11 +13,7 @@ function SitemapForm({ values }) {
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validate}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="">
             <div className="">

@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import Button from "@/components/ui/Button";
 import deleteLottie from "@/public/lottie/delete-lottie.json";
-import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import { Spinner } from "@/components/Loading/Spinner";
 
 function DeleteModal({
   showDeleteModal,

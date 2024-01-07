@@ -1,7 +1,8 @@
-import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import { Spinner } from "@/components/Loading/Spinner";
 import Button from "@/components/ui/Button";
 import usePostData from "@/hooks/usePostData";
 import React from "react";
+import { toast } from "sonner";
 
 function LogoSubmit({ logo, setShowImageModal }) {
   const { mutate, isPending } = usePostData({
@@ -16,6 +17,7 @@ function LogoSubmit({ logo, setShowImageModal }) {
     mutate(values, {
       onSuccess: () => {
         setShowImageModal(false);
+        toast.success("Logo changed successfully");
       },
     });
   };

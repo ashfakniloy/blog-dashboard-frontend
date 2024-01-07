@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { InputField } from "@/components/Forms/Fields/InputField";
-import { TextareaField } from "@/components/Forms/Fields/TextareaField";
+import { InputField } from "@/components/FormFields/InputField";
+import { TextareaField } from "@/components/FormFields/TextareaField";
 import usePostData from "@/hooks/usePostData";
-import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import { Spinner } from "@/components/Loading/Spinner";
 
 function ImageSubmitForm({
   imageId,
@@ -47,11 +47,7 @@ function ImageSubmitForm({
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validate}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="space-y-5">
             <InputField

@@ -4,7 +4,7 @@ import { LinkIcon } from "./Icons/LinkIcon";
 import { Cancel } from "./Icons/Cancel";
 
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { RadioField } from "../Forms/Fields/RadioField";
+import { RadioField } from "../FormFields/RadioField";
 import Button from "../ui/Button";
 
 function LinkButton({ editor }) {

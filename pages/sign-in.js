@@ -2,20 +2,29 @@ import Image from "next/image";
 import { Form, Formik } from "formik";
 import useSignin from "@/hooks/useSignin";
 import PageWrapper from "@/components/Layout/PageWrapper";
-import { EmailField } from "@/components/Forms/Fields/EmailField";
-import { PasswordField } from "@/components/Forms/Fields/PasswordField";
-import { CheckboxField } from "@/components/Forms/Fields/CheckboxField";
+import { EmailField } from "@/components/FormFields/EmailField";
+import { PasswordField } from "@/components/FormFields/PasswordField";
+import { CheckboxField } from "@/components/FormFields/CheckboxField";
 import Button from "@/components/ui/Button";
-import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import { Spinner } from "@/components/Loading/Spinner";
+import useGetDataPublic from "@/hooks/useGetDataPublic";
 
 function SigninPage() {
-  const { signin } = useSignin();
-
   const initialValues = {
-    email: "kha9647@gmail.com",
-    password: "rana6879",
+    email: "",
+    password: "",
     rememberMe: false,
   };
+
+  const { data, isPending } = useGetDataPublic({
+    path: "/user/public/logo",
+  });
+
+  const logo = data?.success?.logo;
+
+  const { signin } = useSignin();
+
+  console.log("data", logo);
 
   const handleSubmit = async (values) => {
     // console.log(values);
@@ -29,12 +38,20 @@ function SigninPage() {
           <div className="flex items-center w-[70%] justify-center z-10 text-5xl font-bold bg-white text-black">
             {/* <div className="relative w-[461px] h-[286px]"> */}
             <div className="ml-[20%] relative w-[340px] h-[210px]">
-              <Image
+              {logo && (
+                <Image
+                  src={logo}
+                  alt="company logo"
+                  fill
+                  className="object-cover"
+                />
+              )}
+              {/* <Image
                 src="/images/static-logo.png"
                 alt="static logo"
                 fill
                 className="object-cover"
-              />
+              /> */}
             </div>
           </div>
 
@@ -42,11 +59,7 @@ function SigninPage() {
         </div>
 
         <div className="flex-1 flex justify-center items-center">
-          <Formik
-            initialValues={initialValues}
-            // validationSchema={validate}
-            onSubmit={handleSubmit}
-          >
+          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             {({ isSubmitting }) => (
               <Form className="w-[400px] h-[536px] 2xl:w-[473px] 2xl:h-[616px] px-10 bg-white rounded-2xl shadow-lg">
                 <div className="pt-[68px] flex flex-col items-center font-manrope">
@@ -68,20 +81,19 @@ function SigninPage() {
                     <div className="mb-3.5">
                       <CheckboxField label="Remember me" name="rememberMe" />
                     </div>
-                    {
-                      <Button
-                        type="submit"
-                        className="w-full py-3 rounded-md relative"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting && (
-                          <span className="absolute left-24 2xl:left-32">
-                            <Spinner />
-                          </span>
-                        )}
-                        Log in
-                      </Button>
-                    }
+
+                    <Button
+                      type="submit"
+                      className="w-full py-3 rounded-md relative"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting && (
+                        <span className="absolute left-24 2xl:left-32">
+                          <Spinner />
+                        </span>
+                      )}
+                      Log in
+                    </Button>
                   </div>
                 </div>
               </Form>
@@ -94,85 +106,3 @@ function SigninPage() {
 }
 
 export default SigninPage;
-
-// import { useState } from "react";
-// import { useRouter } from "next/router";
-// import Image from "next/image";
-// import { Form, Formik } from "formik";
-// import OtpForm from "@/components/Forms/OtpForm";
-// import SigninForm from "@/components/Forms/SigninForm";
-// import PageWrapper from "@/components/Layout/PageWrapper";
-
-// function SigninPage() {
-//   const [step, setStep] = useState(1);
-
-//   const router = useRouter();
-
-//   const initialValues = {
-//     email: "",
-//     password: "",
-//     otp: "",
-//     rememberMe: false,
-//   };
-
-//   const handleSubmit = async (values, formik) => {
-//     if (step === 1) {
-//       const values1 = {
-//         email: values.email,
-//         password: values.password,
-//       };
-
-//       setStep(2);
-
-//       console.log("step 1 values", values1);
-//     } else if (step === 2) {
-//       const values2 = {
-//         email: values.email,
-//         otp: values.otp,
-//       };
-
-//       console.log(values2);
-//       formik.resetForm();
-//       router.push("/");
-//     }
-//   };
-
-//   return (
-//     <PageWrapper title="Sign in" description="sign in">
-//       <div className="min-h-screen flex bg-custom-gray3">
-//         <div className="flex-1 flex relative">
-//           <div className="flex items-center w-[70%] justify-center z-10 text-5xl font-bold bg-white text-black">
-//             {/* <div className="relative w-[461px] h-[286px]"> */}
-//             <div className="ml-[20%] relative w-[340px] h-[210px]">
-//               <Image
-//                 src="/images/static-logo.png"
-//                 alt="static logo"
-//                 fill
-//                 className="object-cover"
-//               />
-//             </div>
-//           </div>
-
-//           <div className="absolute inset-y-0 right-[15%] w-[30%] bg-white -skew-x-[16deg]"></div>
-//         </div>
-
-//         <div className="flex-1 flex justify-center items-center">
-//           <Formik
-//             initialValues={initialValues}
-//             // validationSchema={validate}
-//             onSubmit={handleSubmit}
-//           >
-//             {({ isSubmitting }) => (
-//               <Form className="">
-//                 {step === 1 && <SigninForm />}
-//                 {step === 2 && <OtpForm />}
-//               </Form>
-//             )}
-//           </Formik>
-//         </div>
-//       </div>
-//     </PageWrapper>
-//   );
-// }
-
-// export default SigninPage;

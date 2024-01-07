@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import useTheme from "@/hooks/useTheme";
 import { IconPeople } from "@/components/Icons";
 
@@ -27,10 +27,6 @@ export const EmailField = ({ label, ...props }) => {
             e.target.style = "border-custom-gray2";
           }}
         />
-
-        {/* <p className="absolute text-xs text-red-600 -bottom-4">
-            <ErrorMessage {...props} />
-          </p> */}
       </div>
     </label>
   );

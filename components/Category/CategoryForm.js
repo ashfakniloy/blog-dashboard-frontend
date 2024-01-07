@@ -1,11 +1,11 @@
 import { Form, Formik } from "formik";
 import slugify from "slugify";
 import { toast } from "sonner";
-import { InputField } from "./Fields/InputField";
+import { InputField } from "../FormFields/InputField";
 import Button from "../ui/Button";
-import { TextareaField } from "./Fields/TextareaField";
+import { TextareaField } from "../FormFields/TextareaField";
 import usePostData from "@/hooks/usePostData";
-import { Spinner } from "../LoadingSpinner/Spinner";
+import { Spinner } from "../Loading/Spinner";
 
 function CategoryForm() {
   const initialValues = {
@@ -32,11 +32,7 @@ function CategoryForm() {
 
   return (
     <div className="mt-8">
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validate}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting, setFieldValue }) => (
           <Form className="">
             <div className="space-y-9 w-full">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFormikContext } from "formik";
 import OTPInput from "react-otp-input";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 import usePostData from "@/hooks/usePostData";
 import useSignout from "@/hooks/useSignout";
 
@@ -50,9 +50,9 @@ function OtpForm({ isLoading, setFieldValue, values, setShowOtpField }) {
 
   const handleOtpSubmit = () => {
     console.log("values", values);
-    setShowOtpField(false);
     mutate(values, {
       onSuccess: () => {
+        setShowOtpField(false);
         signout();
       },
     });

@@ -3,7 +3,7 @@ import Image from "next/image";
 import useTheme from "@/hooks/useTheme";
 import { IconCloudArrow } from "@/components/Icons";
 import { toast } from "sonner";
-import { Spinner } from "@/components/LoadingSpinner/Spinner";
+import { Spinner } from "@/components/Loading/Spinner";
 import ImageSubmitForm from "./ImageSubmitForm";
 import Button from "@/components/ui/Button";
 import LogoSubmit from "./LogoSubmit";

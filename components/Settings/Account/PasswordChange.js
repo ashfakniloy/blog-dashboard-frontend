@@ -227,15 +227,18 @@
 
 import { useState } from "react";
 import { Form, Formik } from "formik";
-import { InputField2 } from "../Fields/InputField";
+import { InputField2 } from "../../FormFields/InputField";
 import Button from "@/components/ui/Button";
 import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
-import OtpForm from "../OtpForm";
+import OtpForm from "./OtpForm";
 import usePostData from "@/hooks/usePostData";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { IconEye, IconEyeSlash } from "@/components/Icons";
+import { PasswordField2 } from "../../FormFields/PasswordField";
 
 function PasswordChange() {
   const [isSelected, setIsSelected] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [showOtpField, setShowOtpField] = useState(false);
 
@@ -277,14 +280,32 @@ function PasswordChange() {
             <label htmlFor="">Password</label>
             <div className="flex w-full items-center gap-5">
               {isSelected ? (
-                <InputField2
+                <PasswordField2
                   name="password"
-                  type="password"
-                  required
                   autoFocus={isSelected}
                   autoComplete="off"
+                  required
                 />
               ) : (
+                // <div className="relative w-full">
+                //   <InputField2
+                //     name="password"
+                //     type={showPassword ? "text" : "password"}
+                //     required
+                //     autoFocus={isSelected}
+                //     autoComplete="off"
+                //   />
+                //   <div className="absolute inset-y-0 flex items-center right-3">
+                //     <span
+                //       className="p-[6px] text-lg cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
+                //       onClick={() => setShowPassword(!showPassword)}
+                //     >
+                //       <span>
+                //         {showPassword ? <IconEyeSlash /> : <IconEye />}
+                //       </span>
+                //     </span>
+                //   </div>
+                // </div>
                 <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
                   {`********`}
                 </p>
@@ -318,7 +339,7 @@ function PasswordChange() {
                     type="button"
                     className="w-[100px]"
                     onClick={handlePassword}
-                    disabled={isPending}
+                    disabled={isPending || !values.password}
                   >
                     Save
                   </Button>

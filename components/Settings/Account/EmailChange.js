@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
 import { toast } from "sonner";
-import { InputField2 } from "../Fields/InputField";
+import { InputField2 } from "../../FormFields/InputField";
 import Button from "@/components/ui/Button";
 import usePostData from "@/hooks/usePostData";
 
@@ -35,7 +35,6 @@ function EmailChange({ currentEmail }) {
     <div>
       <Formik
         initialValues={initialValues}
-        // validationSchema={validate}
         onSubmit={handleSubmit}
         enableReinitialize
       >
@@ -96,47 +95,3 @@ function EmailChange({ currentEmail }) {
 }
 
 export default EmailChange;
-
-// import { InputField } from "../Fields/InputField";
-// import { Form, Formik } from "formik";
-// import Button from "@/components/ui/Button";
-
-// function EmailChange({ currentEmail }) {
-//   const initialValues = {
-//     email: currentEmail || "",
-//   };
-
-//   const handleSubmit = (values) => {
-//     console.log("values", values);
-//   };
-
-//   return (
-//     <div>
-//       <Formik
-//         initialValues={initialValues}
-//         // validationSchema={validate}
-//         onSubmit={handleSubmit}
-//       >
-//         {({ isSubmitting }) => (
-//           <Form className="">
-//             <label htmlFor="">Email</label>
-//             <div className="flex w-full items-center gap-5">
-//               <InputField
-//                 name="email"
-//                 type="email"
-//                 className="w-full bg-transparent text-2xl pl-0.5 py-0 border-0 font-bold text-gray-600"
-//                 required
-//                 // autoFocus
-//               />
-//               <Button type="submit" className="w-[200px]">
-//                 Change Email
-//               </Button>
-//             </div>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   );
-// }
-
-// export default EmailChange;

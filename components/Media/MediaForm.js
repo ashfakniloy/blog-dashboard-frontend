@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { InputField } from "../Forms/Fields/InputField";
-import { TextareaField } from "../Forms/Fields/TextareaField";
+import { InputField } from "../FormFields/InputField";
+import { TextareaField } from "../FormFields/TextareaField";
 import usePostData from "@/hooks/usePostData";
-import { Spinner } from "../LoadingSpinner/Spinner";
+import { Spinner } from "../Loading/Spinner";
 import { toast } from "sonner";
 
 function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
@@ -22,7 +22,7 @@ function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
     mutate(values, {
       onSuccess: () => {
         console.log("onsuccess");
-        toast.success(`Image details edited`);
+        toast.success(`Image details changed`);
         setImageTitleState(values.imageTitle);
         // formik.resetForm();
       },
@@ -33,7 +33,6 @@ function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
     <div>
       <Formik
         initialValues={initialValues}
-        // validationSchema={validate}
         onSubmit={handleSubmit}
         enableReinitialize
       >
