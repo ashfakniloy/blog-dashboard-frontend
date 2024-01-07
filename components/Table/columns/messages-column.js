@@ -1,3 +1,5 @@
+import { getFormatedDateTime } from "@/utils/getFormatedDateTime";
+
 export const messagesColumn = [
   {
     Header: "Name",
@@ -17,6 +19,7 @@ export const messagesColumn = [
   },
   {
     Header: "Date & Time",
-    accessor: "date_time",
+    accessor: "createdAt",
+    Cell: ({ row }) => <>{getFormatedDateTime(row.original.createdAt)}</>,
   },
 ];

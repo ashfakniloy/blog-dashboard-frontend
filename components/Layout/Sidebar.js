@@ -70,8 +70,10 @@ function Sidebar({ navLinks }) {
                 // src="/images/static-logo.png"
                 src={logo}
                 alt="static logo"
+                sizes="200px"
                 fill
                 className="object-cover"
+                priority
               />
             )}
           </div>

@@ -4,9 +4,10 @@ import OTPInput from "react-otp-input";
 import Button from "../../ui/Button";
 import usePostData from "@/hooks/usePostData";
 import useSignout from "@/hooks/useSignout";
+import { Spinner } from "@/components/Loading/Spinner";
 
-function OtpForm({ isLoading, setFieldValue, values, setShowOtpField }) {
-  const otpTimeLimit = 2 * 60;
+function OtpForm({ setFieldValue, values, setShowOtpField }) {
+  const otpTimeLimit = 5 * 60;
   const maxOtpLength = 6;
 
   // const { values, setFieldValue } = useFormikContext();
@@ -49,7 +50,7 @@ function OtpForm({ isLoading, setFieldValue, values, setShowOtpField }) {
   };
 
   const handleOtpSubmit = () => {
-    console.log("values", values);
+    // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
         setShowOtpField(false);
@@ -90,10 +91,15 @@ function OtpForm({ isLoading, setFieldValue, values, setShowOtpField }) {
           </Button> */}
           <Button
             type="button"
-            className="w-[90%] py-3 rounded-md"
-            disabled={otpValueLength < maxOtpLength || isLoading}
+            className="w-[90%] py-3 rounded-md relative"
+            disabled={otpValueLength < maxOtpLength || isPending}
             onClick={handleOtpSubmit}
           >
+            {isPending && (
+              <span className="absolute left-20">
+                <Spinner />
+              </span>
+            )}
             Submit
           </Button>
         </div>

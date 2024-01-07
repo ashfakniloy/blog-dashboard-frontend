@@ -1,3 +1,152 @@
+import { useState } from "react";
+import { Form, Formik } from "formik";
+import { InputField2 } from "../../FormFields/InputField";
+import Button from "@/components/ui/Button";
+import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
+import OtpForm from "./OtpForm";
+import usePostData from "@/hooks/usePostData";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { IconEye, IconEyeSlash } from "@/components/Icons";
+import { PasswordField2 } from "../../FormFields/PasswordField";
+
+function PasswordChange() {
+  const [isSelected, setIsSelected] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [showOtpField, setShowOtpField] = useState(false);
+
+  const initialValues = {
+    password: "",
+    otp: "",
+  };
+
+  const { mutate, isPending } = usePostData({
+    path: "/user/otp/once",
+  });
+
+  // const handleSubmit = (values) => {
+  //   console.log("values", values);
+  //   setShowOtpField(false);
+  // };
+
+  const handlePassword = () => {
+    // console.log("post to backend");
+    mutate(
+      {},
+      {
+        onSuccess: () => {
+          setShowOtpField(true);
+        },
+      }
+    );
+  };
+
+  return (
+    <div>
+      <Formik
+        initialValues={initialValues}
+        // validationSchema={validate}
+        // onSubmit={handleSubmit}
+      >
+        {({ isSubmitting, resetForm, setFieldValue, values }) => (
+          <Form className="">
+            <label htmlFor="">Password</label>
+            <div className="flex w-full items-center gap-5">
+              {isSelected ? (
+                <PasswordField2
+                  name="password"
+                  autoFocus={isSelected}
+                  autoComplete="off"
+                  required
+                />
+              ) : (
+                // <div className="relative w-full">
+                //   <InputField2
+                //     name="password"
+                //     type={showPassword ? "text" : "password"}
+                //     required
+                //     autoFocus={isSelected}
+                //     autoComplete="off"
+                //   />
+                //   <div className="absolute inset-y-0 flex items-center right-3">
+                //     <span
+                //       className="p-[6px] text-lg cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
+                //       onClick={() => setShowPassword(!showPassword)}
+                //     >
+                //       <span>
+                //         {showPassword ? <IconEyeSlash /> : <IconEye />}
+                //       </span>
+                //     </span>
+                //   </div>
+                // </div>
+                <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
+                  {`********`}
+                </p>
+              )}
+              {!isSelected ? (
+                <Button
+                  type="button"
+                  className="w-[250px]"
+                  onClick={() => setIsSelected(true)}
+                >
+                  Change Password
+                </Button>
+              ) : (
+                <div className="flex items-center gap-5">
+                  <Button
+                    type="button"
+                    className="w-[100px]"
+                    variant="outline"
+                    disabled={isPending}
+                    onClick={() => {
+                      setIsSelected(false);
+                      resetForm();
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  {/* <Button type="submit" className="w-[100px]">
+                    Save
+                  </Button> */}
+                  <Button
+                    type="button"
+                    className="w-[100px]"
+                    onClick={handlePassword}
+                    disabled={isPending || !values.password}
+                  >
+                    Save
+                  </Button>
+
+                  {/* <Dialog open={showOtpField} onOpenChange={setShowOtpField}>
+                    <DialogContent className="w-[473px] px-[70px] pt-[33px] pb-[52px] bg-white rounded-2xl shadow-lg">
+                      <OtpForm />
+                    </DialogContent>
+                  </Dialog> */}
+
+                  <AlertDialog
+                    open={showOtpField}
+                    onOpenChange={setShowOtpField}
+                  >
+                    <AlertDialogContent className="w-[473px] px-[70px] pt-[33px] pb-[52px] bg-white rounded-2xl shadow-lg">
+                      <OtpForm
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        setShowOtpField={setShowOtpField}
+                      />
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+              )}
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+}
+
+export default PasswordChange;
+
 // import { useState } from "react";
 // import { Form, Formik } from "formik";
 // import { InputField2 } from "../Fields/InputField";
@@ -224,152 +373,3 @@
 // }
 
 // export default PasswordChange;
-
-import { useState } from "react";
-import { Form, Formik } from "formik";
-import { InputField2 } from "../../FormFields/InputField";
-import Button from "@/components/ui/Button";
-import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
-import OtpForm from "./OtpForm";
-import usePostData from "@/hooks/usePostData";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { IconEye, IconEyeSlash } from "@/components/Icons";
-import { PasswordField2 } from "../../FormFields/PasswordField";
-
-function PasswordChange() {
-  const [isSelected, setIsSelected] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const [showOtpField, setShowOtpField] = useState(false);
-
-  const initialValues = {
-    password: "",
-    otp: "",
-  };
-
-  const { mutate, isPending } = usePostData({
-    path: "/user/otp/once",
-  });
-
-  // const handleSubmit = (values) => {
-  //   console.log("values", values);
-  //   setShowOtpField(false);
-  // };
-
-  const handlePassword = () => {
-    // console.log("post to backend");
-    mutate(
-      {},
-      {
-        onSuccess: () => {
-          setShowOtpField(true);
-        },
-      }
-    );
-  };
-
-  return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validate}
-        // onSubmit={handleSubmit}
-      >
-        {({ isSubmitting, resetForm, setFieldValue, values }) => (
-          <Form className="">
-            <label htmlFor="">Password</label>
-            <div className="flex w-full items-center gap-5">
-              {isSelected ? (
-                <PasswordField2
-                  name="password"
-                  autoFocus={isSelected}
-                  autoComplete="off"
-                  required
-                />
-              ) : (
-                // <div className="relative w-full">
-                //   <InputField2
-                //     name="password"
-                //     type={showPassword ? "text" : "password"}
-                //     required
-                //     autoFocus={isSelected}
-                //     autoComplete="off"
-                //   />
-                //   <div className="absolute inset-y-0 flex items-center right-3">
-                //     <span
-                //       className="p-[6px] text-lg cursor-pointer hover:bg-gray-200 active:bg-gray-300 rounded-full text-black/60"
-                //       onClick={() => setShowPassword(!showPassword)}
-                //     >
-                //       <span>
-                //         {showPassword ? <IconEyeSlash /> : <IconEye />}
-                //       </span>
-                //     </span>
-                //   </div>
-                // </div>
-                <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
-                  {`********`}
-                </p>
-              )}
-              {!isSelected ? (
-                <Button
-                  type="button"
-                  className="w-[250px]"
-                  onClick={() => setIsSelected(true)}
-                >
-                  Change Password
-                </Button>
-              ) : (
-                <div className="flex items-center gap-5">
-                  <Button
-                    type="button"
-                    className="w-[100px]"
-                    variant="outline"
-                    disabled={isPending}
-                    onClick={() => {
-                      setIsSelected(false);
-                      resetForm();
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                  {/* <Button type="submit" className="w-[100px]">
-                    Save
-                  </Button> */}
-                  <Button
-                    type="button"
-                    className="w-[100px]"
-                    onClick={handlePassword}
-                    disabled={isPending || !values.password}
-                  >
-                    Save
-                  </Button>
-
-                  {/* <Dialog open={showOtpField} onOpenChange={setShowOtpField}>
-                    <DialogContent className="w-[473px] px-[70px] pt-[33px] pb-[52px] bg-white rounded-2xl shadow-lg">
-                      <OtpForm />
-                    </DialogContent>
-                  </Dialog> */}
-
-                  <AlertDialog
-                    open={showOtpField}
-                    onOpenChange={setShowOtpField}
-                  >
-                    <AlertDialogContent className="w-[473px] px-[70px] pt-[33px] pb-[52px] bg-white rounded-2xl shadow-lg">
-                      <OtpForm
-                        setFieldValue={setFieldValue}
-                        values={values}
-                        setShowOtpField={setShowOtpField}
-                      />
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-              )}
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-}
-
-export default PasswordChange;

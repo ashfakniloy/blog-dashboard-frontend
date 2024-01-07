@@ -42,6 +42,8 @@ function SigninPage() {
                 <Image
                   src={logo}
                   alt="company logo"
+                  sizes="400px"
+                  priority
                   fill
                   className="object-cover"
                 />
