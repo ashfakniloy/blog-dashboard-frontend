@@ -87,9 +87,10 @@ const TextEditor = () => {
   // }, [article]);
 
   return (
-    <div>
+    // <div className="max-w-[620px] 2xl:max-w-[1150px]">
+    <div className="">
       <Toolbar editor={editor} />
-      {/* <div> */}
+      {/* <div className=""> */}
       <EditorContent editor={editor} required={true} />
       {/* </div> */}
     </div>

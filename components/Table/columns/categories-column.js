@@ -2,6 +2,12 @@ import DeleteCategory from "../actions/DeleteCategory";
 
 export const categoriesColumn = [
   {
+    header: "#",
+    accessorKey: "_id",
+    size: 70,
+    cell: ({ row }) => row.index + 1,
+  },
+  {
     header: "Name",
     accessorKey: "name",
   },

@@ -19,7 +19,7 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
       >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form className="flex gap-5 min-h-screen">
-            <div className="w-full h-full border-r border-gray-300 pr-5">
+            <div className="w-full h-full max-w-[672px] 2xl:max-w-[1200px] border-r border-gray-300 pr-5">
               <div className="mt-5 space-y-9 ">
                 <InputField
                   label="Title:"

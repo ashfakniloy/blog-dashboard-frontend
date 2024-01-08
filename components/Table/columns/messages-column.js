@@ -2,6 +2,12 @@ import { getFormatedDateTime } from "@/utils/getFormatedDateTime";
 
 export const messagesColumn = [
   {
+    header: "#",
+    accessorKey: "_id",
+    size: 70,
+    cell: ({ row }) => row.index + 1,
+  },
+  {
     header: "Name",
     accessorKey: "name",
   },

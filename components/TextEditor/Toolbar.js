@@ -29,7 +29,7 @@ const Toolbar = ({ editor }) => {
 
   return (
     <div
-      className={`tiptap-toolbar border ${
+      className={`tiptap-toolbar border text-gray-700 ${
         editor.isFocused ? "border-gray-500" : " border-gray-300"
       }`}
     >
@@ -142,10 +142,10 @@ const Toolbar = ({ editor }) => {
         className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
         title="Heading 1"
       >
-        {/* H<span className="self-center text-xs">1</span> */}
-        <span className="fill-gray-700">
+        <span className="text-[15px] font-medium">H1</span>
+        {/* <span className="fill-gray-700">
           <Heading1 />
-        </span>
+        </span> */}
       </button>
       <button
         type="button"
@@ -153,10 +153,10 @@ const Toolbar = ({ editor }) => {
         className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
         title="Heading 2"
       >
-        {/* H<span className="text-xs">2</span> */}
-        <span className="fill-gray-700">
+        <span className="text-[15px] font-medium">H2</span>
+        {/* <span className="fill-gray-700">
           <Heading2 />
-        </span>
+        </span> */}
       </button>
       <button
         type="button"
@@ -164,32 +164,32 @@ const Toolbar = ({ editor }) => {
         className={editor.isActive("heading", { level: 3 }) ? "is-active" : ""}
         title="Heading 3"
       >
-        {/* H<span className="text-xs">3</span> */}
-        <span className="fill-gray-700">
+        <span className="text-[15px] font-medium">H3</span>
+        {/* <span className="fill-gray-700">
           <Heading3 />
-        </span>
+        </span> */}
       </button>
-      {/* <button
+      <button
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
         className={editor.isActive("heading", { level: 4 }) ? "is-active" : ""}
       >
-        h4
+        <span className="text-[15px] font-medium">H4</span>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
         className={editor.isActive("heading", { level: 5 }) ? "is-active" : ""}
       >
-        h5
+        <span className="text-[15px] font-medium">H5</span>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
         className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
       >
-        h6
-      </button> */}
+        <span className="text-[15px] font-medium">H6</span>
+      </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}

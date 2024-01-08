@@ -37,7 +37,7 @@
   @apply leading-[1.1];
 }
 
-.ProseMirror > h1 {
+/* .ProseMirror > h1 {
   @apply text-3xl font-bold;
 }
 .ProseMirror > h2 {
@@ -45,6 +45,25 @@
 }
 .ProseMirror > h3 {
   @apply text-xl font-bold;
+} */
+
+.ProseMirror > h1 {
+  @apply text-[32px] font-bold;
+}
+.ProseMirror > h2 {
+  @apply text-[24px] font-bold;
+}
+.ProseMirror > h3 {
+  @apply text-[20.8px] font-bold;
+}
+.ProseMirror > h4 {
+  @apply text-[16px] font-bold;
+}
+.ProseMirror > h5 {
+  @apply text-[12.8px] font-bold;
+}
+.ProseMirror > h6 {
+  @apply text-[11.2px] font-bold;
 }
 
 .ProseMirror > p {

@@ -4,9 +4,15 @@ import { IconEdit } from "@/components/Icons";
 
 export const blogsColumn = [
   {
+    header: "#",
+    accessorKey: "_id",
+    size: 70,
+    cell: ({ row }) => row.index + 1,
+  },
+  {
     header: "Title",
     accessorKey: "title",
-    size: 325,
+    size: 350,
   },
   {
     header: "Meta Description",
