@@ -9,10 +9,10 @@ import useGetData from "@/hooks/useGetData";
 import { PageSpinner, Spinner } from "@/components/Loading/Spinner";
 import { useFormikContext } from "formik";
 
-function ImageLibrary({ setShowImageModal }) {
+function ImageLibrary({ setShowImageModal, handleImageSubmit }) {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const { values, setFieldValue } = useFormikContext();
+  // const { values, setFieldValue } = useFormikContext();
 
   const {
     data: mediaData,
@@ -39,7 +39,8 @@ function ImageLibrary({ setShowImageModal }) {
       altText: selectedImage.altText,
       imageTitle: selectedImage.imageTitle,
     };
-    setFieldValue("featuredImage", imageValues);
+    handleImageSubmit(imageValues);
+    // setFieldValue("featuredImage", imageValues);
     setShowImageModal(false);
   };
 

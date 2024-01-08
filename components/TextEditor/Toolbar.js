@@ -1,5 +1,4 @@
 import { AlignLeft } from "./Icons/AlignLeft";
-// import { useTheme } from "next-themes";
 import { AlignCenter } from "./Icons/AlignCenter";
 import { AlignRight } from "./Icons/AlignRight";
 import { BulletList } from "./Icons/BulletList";
@@ -12,17 +11,14 @@ import { ClearFormatting } from "./Icons/ClearFormatting";
 import { Reset } from "./Icons/Reset";
 import { PageBreak } from "./Icons/PageBreak";
 import { Paragraph } from "./Icons/Paragraph";
-import { Heading1 } from "./Icons/Heading1";
-import { Heading2 } from "./Icons/Heading2";
-import { Heading3 } from "./Icons/Heading3";
+// import { Heading1 } from "./Icons/Heading1";
+// import { Heading2 } from "./Icons/Heading2";
+// import { Heading3 } from "./Icons/Heading3";
 import LinkButton from "./LinkButton";
-// import ImageUpload from "./ImageUpload";
+import ImageUpload from "./ImageUpload";
 // import YoutubeVideo from "./YoutubeVideo";
 
 const Toolbar = ({ editor }) => {
-  // const { systemTheme, theme } = useTheme();
-  // const currentTheme = theme === "system" ? systemTheme : theme;
-
   if (!editor) {
     return null;
   }
@@ -173,6 +169,7 @@ const Toolbar = ({ editor }) => {
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
         className={editor.isActive("heading", { level: 4 }) ? "is-active" : ""}
+        title="Heading 4"
       >
         <span className="text-[15px] font-medium">H4</span>
       </button>
@@ -180,6 +177,7 @@ const Toolbar = ({ editor }) => {
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
         className={editor.isActive("heading", { level: 5 }) ? "is-active" : ""}
+        title="Heading 5"
       >
         <span className="text-[15px] font-medium">H5</span>
       </button>
@@ -187,6 +185,7 @@ const Toolbar = ({ editor }) => {
         type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
         className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
+        title="Heading 6"
       >
         <span className="text-[15px] font-medium">H6</span>
       </button>
@@ -230,6 +229,8 @@ const Toolbar = ({ editor }) => {
         </span>
       </button> */}
 
+      <ImageUpload editor={editor} />
+
       <LinkButton editor={editor} />
 
       <button
@@ -270,8 +271,6 @@ const Toolbar = ({ editor }) => {
       >
         purple
       </button> */}
-
-      {/* <ImageUpload editor={editor} currentTheme={currentTheme} /> */}
 
       {/* <YoutubeVideo editor={editor} currentTheme={currentTheme} /> */}
 

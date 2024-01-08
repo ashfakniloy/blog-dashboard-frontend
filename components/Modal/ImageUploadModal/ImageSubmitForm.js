@@ -9,7 +9,8 @@ function ImageSubmitForm({
   imageId,
   imageUrl,
   setShowImageModal,
-  setFieldValue,
+  handleImageSubmit,
+  imageSubmitting,
 }) {
   const initialValues = {
     imageTitle: "",
@@ -20,29 +21,31 @@ function ImageSubmitForm({
     },
   };
 
-  const { mutate, isPending } = usePostData({
-    path: "/media",
-    revalidate: "/media",
-  });
+  // const { mutate, isPending } = usePostData({
+  //   path: "/media",
+  //   revalidate: "/media",
+  // });
 
   const handleSubmit = (values, formik) => {
     console.log("values", values);
 
-    if (setFieldValue) {
-      setFieldValue("featuredImage", values);
-      setShowImageModal(false);
-    } else {
-      mutate(values, {
-        onSuccess: () => {
-          console.log("onsuccess");
-          toast.success(`Media added`);
-          formik.resetForm();
-        },
-        onSettled: () => {
-          setShowImageModal(false);
-        },
-      });
-    }
+    handleImageSubmit(values, formik);
+
+    // if (setFieldValue) {
+    //   setFieldValue("featuredImage", values);
+    //   setShowImageModal(false);
+    // } else {
+    //   mutate(values, {
+    //     onSuccess: () => {
+    //       console.log("onsuccess");
+    //       toast.success(`Media added`);
+    //       formik.resetForm();
+    //     },
+    //     onSettled: () => {
+    //       setShowImageModal(false);
+    //     },
+    //   });
+    // }
   };
 
   return (
@@ -67,10 +70,10 @@ function ImageSubmitForm({
             />
 
             <div className="mt-5 flex items-center gap-3">
-              <Button type="submit" className="px-8" disabled={isPending}>
+              <Button type="submit" className="px-8" disabled={imageSubmitting}>
                 Save
               </Button>
-              {isPending && (
+              {imageSubmitting && (
                 <Spinner className="border-gray-400 border-r-gray-400/30 border-b-gray-400/30" />
               )}
             </div>
