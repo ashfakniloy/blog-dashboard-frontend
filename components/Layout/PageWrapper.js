@@ -1,22 +1,26 @@
-import useTheme from "@/hooks/useTheme";
-import { useSiteInfo } from "@/lib/store";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { PageSpinner } from "../Loading/Spinner";
+import useTheme from "@/hooks/useTheme";
 import useUsername from "@/hooks/useUsername";
+// import useLogo from "@/hooks/useLogo";
 
 function PageWrapper({ title, description, heading, isLoading, children }) {
   const { pathname } = useRouter();
 
   const theme = useTheme();
-
   const username = useUsername();
+  // const logo = useLogo();
 
   return (
     <div className="relative">
       <Head>
-        <title>{title || "Title"}</title>
-        <meta name="description" content={description || "description"} />
+        <title>{title || "Dashboard"}</title>
+        {/* <title>{`${title || "Title"} ${
+          username ? ` - ${username}` : ""
+        } `}</title> */}
+        <meta name="description" content={description || "dashboard"} />
+        {/* <link rel="shortcut icon" href={logo} /> */}
       </Head>
 
       {heading && (

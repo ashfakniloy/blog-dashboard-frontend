@@ -2,24 +2,50 @@ import { getFormatedDateTime } from "@/utils/getFormatedDateTime";
 
 export const messagesColumn = [
   {
-    Header: "Name",
-    accessor: "name",
+    header: "Name",
+    accessorKey: "name",
   },
   {
-    Header: "Email",
-    accessor: "email",
+    header: "Email",
+    accessorKey: "email",
   },
   {
-    Header: "Phone",
-    accessor: "phone",
+    header: "Phone",
+    accessorKey: "phone",
   },
   {
-    Header: "Message",
-    accessor: "message",
+    header: "Message",
+    accessorKey: "message",
   },
   {
-    Header: "Date & Time",
-    accessor: "createdAt",
-    Cell: ({ row }) => <>{getFormatedDateTime(row.original.createdAt)}</>,
+    header: "Date & Time",
+    accessorKey: "createdAt",
+    cell: ({ row }) => getFormatedDateTime(row.original.createdAt),
   },
 ];
+
+// import { getFormatedDateTime } from "@/utils/getFormatedDateTime";
+
+// export const messagesColumn = [
+//   {
+//     Header: "Name",
+//     accessor: "name",
+//   },
+//   {
+//     Header: "Email",
+//     accessor: "email",
+//   },
+//   {
+//     Header: "Phone",
+//     accessor: "phone",
+//   },
+//   {
+//     Header: "Message",
+//     accessor: "message",
+//   },
+//   {
+//     Header: "Date & Time",
+//     accessor: "createdAt",
+//     Cell: ({ row }) => <>{getFormatedDateTime(row.original.createdAt)}</>,
+//   },
+// ];

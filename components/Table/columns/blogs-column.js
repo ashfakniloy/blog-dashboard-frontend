@@ -4,31 +4,26 @@ import { IconEdit } from "@/components/Icons";
 
 export const blogsColumn = [
   {
-    Header: "Title",
-    accessor: "title",
+    header: "Title",
+    accessorKey: "title",
+    size: 325,
   },
   {
-    Header: "Meta Description",
-    accessor: "metaDescription",
+    header: "Meta Description",
+    accessorKey: "metaDescription",
   },
   {
-    Header: "Status",
-    accessor: "published",
-    Cell: ({ row }) => <>{row.original.published ? "Publish" : "Draft"}</>,
+    header: "Status",
+    accessorKey: "published",
+    size: 120,
+    cell: ({ row }) => (row.original.published ? "Publish" : "Draft"),
   },
-  // {
-  //   Header: "Status",
-  //   accessor: "status",
-  //   // minWidth: 400,
-  //   // width: 200,
-  // },
   {
-    Header: "Action",
-    accessor: "_id",
-    disableSortBy: true,
-    width: 200,
-    Cell: ({ row }) => (
-      // <div className="flex justify-center items-center gap-2">
+    header: "Action",
+    accessorKey: "slug",
+    enableSorting: false,
+    size: 100,
+    cell: ({ row }) => (
       <div className="flex items-center gap-2">
         <DeleteBlog blogInfo={row.original} />
 
@@ -42,39 +37,67 @@ export const blogsColumn = [
         </div>
       </div>
     ),
+
+    // accessorKey: "slug",
+    // cell: (info) => (
+    //   // <div className="flex justify-center items-center gap-2">
+    //   <div className="flex items-center gap-2">
+    //     <DeleteBlog blogInfo={info.row.original} />
+
+    //     <div className="">
+    //       <Link
+    //         href={`/blog/edit-blog/${info.getValue()}`}
+    //         // href={`/blog/edit-blog/${row.original.slug}`}
+    //         className="text-black"
+    //       >
+    //         <IconEdit />
+    //       </Link>
+    //     </div>
+    //   </div>
+    // ),
   },
 ];
 
+// // with react table v7
 // import Link from "next/link";
 // import DeleteBlog from "../actions/DeleteBlog";
 // import { IconEdit } from "@/components/Icons";
 
 // export const blogsColumn = [
 //   {
-//     header: "Title",
-//     accessorKey: "title",
+//     Header: "Title",
+//     accessor: "title",
 //   },
 //   {
-//     header: "Meta Description",
-//     accessorKey: "meta_desc",
+//     Header: "Meta Description",
+//     accessor: "metaDescription",
 //   },
 //   {
-//     header: "Status",
-//     accessorKey: "status",
-//     // minWidth: 400,
-//     // width: 200,
+//     Header: "Status",
+//     accessor: "published",
+//     Cell: ({ row }) => <>{row.original.published ? "Publish" : "Draft"}</>,
 //   },
+//   // {
+//   //   Header: "Status",
+//   //   accessor: "status",
+//   //   // minWidth: 400,
+//   //   // width: 200,
+//   // },
 //   {
-//     header: "Action",
-//     accessorKey: "_id",
+//     Header: "Action",
+//     accessor: "_id",
 //     disableSortBy: true,
 //     width: 200,
-//     cell: ({ row }) => (
-//       <div className="flex justify-center items-center gap-2">
+//     Cell: ({ row }) => (
+//       // <div className="flex justify-center items-center gap-2">
+//       <div className="flex items-center gap-2">
 //         <DeleteBlog blogInfo={row.original} />
 
 //         <div className="">
-//           <Link href="/blog/edit-blog" className="text-black">
+//           <Link
+//             href={`/blog/edit-blog/${row.original.slug}`}
+//             className="text-black"
+//           >
 //             <IconEdit />
 //           </Link>
 //         </div>

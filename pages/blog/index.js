@@ -26,6 +26,8 @@ function BlogPage() {
       ) : (
         <p className="mt-10 text-center font-bold text-lg">No blogs found</p>
       )}
+
+      {/* <Table columns={blogsColumn} data={blogsData} /> */}
     </PageWrapper>
   );
 }

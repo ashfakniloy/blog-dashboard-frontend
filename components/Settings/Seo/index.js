@@ -6,14 +6,19 @@ import SitemapForm from "./SitemapForm";
 import SearchConsoleForm from "./SearchConsoleForm";
 import CanonicalUrlForm from "./CanonicalUrlForm";
 
-const initialValues = {
-  robot_text: "robot text value",
-  sitemap: "sitemap value",
-  discourage: true,
+const valuesFromBackend = {
+  robot_text: "",
+  sitemap: "",
+  discourage: false,
 };
 
 function SeoSettings() {
   const seoOptions = [
+    {
+      name: "Search Console",
+      param: "search_consol",
+      formComponent: SearchConsoleForm,
+    },
     {
       name: "RobotsText",
       param: "robots_text",
@@ -25,18 +30,13 @@ function SeoSettings() {
       formComponent: SitemapForm,
     },
     {
-      name: "Search Console",
-      param: "search_consol",
-      formComponent: SearchConsoleForm,
-    },
-    {
       name: "Canonical",
       param: "canonical",
       formComponent: CanonicalUrlForm,
     },
   ];
 
-  const [defaultOption, setDefaultOption] = useState("robots_text");
+  const defaultOption = "search_consol";
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -50,9 +50,14 @@ function SeoSettings() {
 
   if (!isLoaded) return;
 
+  // const selectedOption =
+  //   seoOptions.find((option) => option.param === optionParam) ||
+  //   seoOptions.find((option) => option.param === defaultOption);
+
   const selectedOption =
     seoOptions.find((option) => option.param === optionParam) ||
-    seoOptions.find((option) => option.param === defaultOption);
+    (!optionParam &&
+      seoOptions.find((option) => option.param === defaultOption));
 
   const FormComponent = selectedOption.formComponent;
 
@@ -77,9 +82,11 @@ function SeoSettings() {
         ))}
       </div>
 
-      <div className="mt-5">
-        <FormComponent values={initialValues} />
-      </div>
+      {FormComponent && (
+        <div className="mt-5">
+          <FormComponent values={valuesFromBackend} />
+        </div>
+      )}
     </div>
   );
 }

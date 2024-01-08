@@ -2,16 +2,15 @@ import DeleteCategory from "../actions/DeleteCategory";
 
 export const categoriesColumn = [
   {
-    Header: "Name",
-    accessor: "name",
+    header: "Name",
+    accessorKey: "name",
   },
   {
-    Header: "Action",
-    accessor: "_id",
-    disableSortBy: true,
-    // width: 200,
-    width: 200,
-    Cell: ({ row }) => (
+    header: "Action",
+    accessorKey: "_id",
+    enableSorting: false,
+    size: 100,
+    cell: ({ row }) => (
       <div className="">
         <DeleteCategory categoryInfo={row.original} />
       </div>
@@ -19,34 +18,25 @@ export const categoriesColumn = [
   },
 ];
 
-// / import DeleteCategory from "../actions/DeleteCategory";
+// // with react table v7
+// import DeleteCategory from "../actions/DeleteCategory";
 
 // export const categoriesColumn = [
 //   {
-//     header: "Name",
-//     accessorKey: "name",
-//     width: "auto",
+//     Header: "Name",
+//     accessor: "name",
+//     // width: "auto",
 //   },
 //   {
-//     header: "Action",
-//     accessorKey: "id",
+//     Header: "Action",
+//     accessor: "_id",
 //     disableSortBy: true,
-//     size: 150,
-//     // minWidth: 150,
-//     // maxWidth: 150,
-//     cell: ({ row }) => (
+//     // width: 200,
+//     // width: "auto",
+//     Cell: ({ row }) => (
 //       <div className="">
-//         <DeleteCategory categoryInfo={row.getValue("id")} />
+//         <DeleteCategory categoryInfo={row.original} />
 //       </div>
 //     ),
-//     // cell: ({ row }) => {
-//     //   const amount = parseFloat(row.getValue("amount"))
-//     //   const formatted = new Intl.NumberFormat("en-US", {
-//     //     style: "currency",
-//     //     currency: "USD",
-//     //   }).format(amount)
-
-//     //   return <div className="text-right font-medium">{formatted}</div>
-//     // },
 //   },
 // ];

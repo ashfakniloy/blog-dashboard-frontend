@@ -14,7 +14,7 @@ function Layout({ children }) {
     path: "/user/setting",
   });
 
-  console.log("settingsdata", settingsData);
+  // console.log("settingsdata", settingsData);
 
   useEffect(() => {
     settingsData?.data.name && setUsername(settingsData.data.name);
@@ -29,7 +29,7 @@ function Layout({ children }) {
     <div className="lg:flex">
       <Sidebar navLinks={navLinks} />
 
-      <div className="lg:flex-1 relative bg-white">
+      <div className="lg:flex-1 relative">
         <main className="my-10 mx-2 lg:mx-7">{children}</main>
       </div>
     </div>

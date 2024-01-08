@@ -59,7 +59,7 @@ function CategoryForm() {
               </div>
 
               <TextareaField
-                label="Category Description"
+                label="Category Description:"
                 placeholder="Enter category description"
                 name="description"
                 type="text"

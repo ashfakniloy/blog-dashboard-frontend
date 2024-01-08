@@ -32,7 +32,7 @@ function usePostData({ path, revalidate }) {
     },
     onError: (error) => {
       console.log("error is", error.response.data);
-      toast.error("Something went wrong");
+      toast.error(error.response?.data?.error || "Something went wrong");
     },
   });
 }

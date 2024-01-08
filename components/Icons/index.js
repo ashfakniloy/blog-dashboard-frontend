@@ -20,3 +20,5 @@ export { IconCloudArrow } from "./IconCloudArrow";
 export { IconX } from "./IconX";
 export { IconSend } from "./IconSend";
 export { IconDraft } from "./IconDraft";
+export { IconAngleUp } from "./IconAngleUp";
+export { IconAngleDown } from "./IconAngleDown";

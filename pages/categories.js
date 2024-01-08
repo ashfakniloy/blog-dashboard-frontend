@@ -19,16 +19,13 @@ function CategoriesPage() {
     >
       <CategoryForm />
 
-      {/* {categoriesData ? (
-        <Table columns={categoriesColumn} data={categoriesData} />
-      ) : (
-        <p className="mt-10 text-center font-bold text-lg">No results</p>
-      )} */}
       {categoriesData?.data?.length ? (
         <Table columns={categoriesColumn} data={categoriesData.data} />
       ) : (
         <p className="mt-10 text-center font-bold text-lg">No results</p>
       )}
+
+      {/* <Table columns={categoriesColumn} data={categoriesData} /> */}
     </PageWrapper>
   );
 }

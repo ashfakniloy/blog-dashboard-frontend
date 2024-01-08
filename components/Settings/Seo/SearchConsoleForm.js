@@ -17,14 +17,15 @@ function SearchConsoleForm() {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="">
-            <div className="p-5 rounded-md bg-gray-200 flex items-center gap-16">
-              <p className="font-bold">Google Verification Code</p>
+            <div className="rounded-md flex gap-16">
+              <label htmlFor="search_console" className="font-bold mt-5">
+                Google Verification Code
+              </label>
               <div className="flex-1 ">
                 <InputField
                   name="search_console"
                   type="text"
-                  // className="bg-transparent border-2 border-blue-500 focus:border-blue-600"
-                  className="bg-transparent  border-gray-400"
+                  className=""
                   required
                 />
                 <p className="mt-3 text-sm font-medium">

@@ -11,7 +11,7 @@ function Sidebar({ navLinks }) {
   const router = useRouter();
   const theme = useTheme();
   const logo = useLogo();
-  const { setUsername } = useSiteInfo();
+  const { setUsername, setLogo } = useSiteInfo();
 
   const { signout } = useSignout();
 
@@ -114,6 +114,7 @@ function Sidebar({ navLinks }) {
             onClick={() => {
               signout();
               setUsername(null);
+              // setLogo(null);
             }}
           >
             <div className="flex items-center gap-3">

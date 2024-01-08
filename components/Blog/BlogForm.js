@@ -49,15 +49,17 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                   disabled={isPending}
                   className="w-[178px] flex justify-center items-center gap-2"
                 >
-                  {isPending ? (
-                    values.published === false ? (
-                      <Spinner />
+                  <span className="size-5">
+                    {isPending ? (
+                      values.published === false ? (
+                        <Spinner className="size-5 border-gray-500 border-r-gray-500/30 border-b-gray-500/30" />
+                      ) : (
+                        <IconDraft />
+                      )
                     ) : (
                       <IconDraft />
-                    )
-                  ) : (
-                    <IconDraft />
-                  )}
+                    )}
+                  </span>
                   {/* {isPending ? <Spinner /> : <IconDraft />} */}
                   Save as Draft
                 </Button>
@@ -65,17 +67,19 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                   type="submit"
                   onClick={() => setFieldValue("published", true)}
                   disabled={isPending}
-                  className="w-[178px] flex justify-center items-center gap-2"
+                  className="w-[178px] flex justify-center items-center gap-2.5"
                 >
-                  {isPending ? (
-                    values.published === true ? (
-                      <Spinner />
+                  <span className="size-5">
+                    {isPending ? (
+                      values.published === true ? (
+                        <Spinner className="size-5" />
+                      ) : (
+                        <IconSend />
+                      )
                     ) : (
                       <IconSend />
-                    )
-                  ) : (
-                    <IconSend />
-                  )}
+                    )}
+                  </span>
                   {/* {isPending ? <Spinner /> : <IconSend />} */}
                   Publish
                 </Button>
