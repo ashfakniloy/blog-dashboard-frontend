@@ -1,5 +1,6 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import useGetData from "@/hooks/useGetData";
+import useTheme from "@/hooks/useTheme";
 
 // import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
@@ -37,6 +38,8 @@ import useGetData from "@/hooks/useGetData";
 // };
 
 export default function Home() {
+  const theme = useTheme();
+
   const { data: dashboardData, isPending } = useGetData({
     path: "/user/dashboard",
   });
@@ -73,7 +76,8 @@ export default function Home() {
               {messagesCount.map((message) => (
                 <div
                   key={message.name}
-                  className="h-[90px] 2xl:h-[100px] w-full flex justify-center items-center gap-3 rounded-2xl bg-custom-orange text-white"
+                  className="h-[90px] 2xl:h-[100px] w-full flex justify-center items-center gap-3 rounded-2xl text-white"
+                  style={{ backgroundColor: theme }}
                 >
                   <span className="text-[25px] font-bold">{message.count}</span>
                   <span className="text-xl">{message.name}</span>
