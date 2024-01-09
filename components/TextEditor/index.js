@@ -35,10 +35,10 @@ const TextEditor = ({ value, setValue }) => {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
-      // Image.configure({
-      //   allowBase64: true,
-      //   inline: true,
-      // }),
+      Image.configure({
+        allowBase64: true,
+        inline: true,
+      }),
       ImageResize.configure({
         allowBase64: true,
         inline: true,
