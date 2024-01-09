@@ -20,6 +20,18 @@
   }
 }
 
+.tiptap-toolbar {
+  @apply z-10 flex flex-wrap items-center gap-1 p-2 rounded-t-md;
+}
+
+.tiptap-toolbar button {
+  @apply hover:bg-gray-200  px-1 min-w-[30px] h-[28px] flex justify-center items-center rounded disabled:opacity-50 disabled:hover:!bg-transparent;
+}
+
+.tiptap-toolbar .is-active {
+  @apply bg-gray-300 hover:bg-gray-300;
+}
+
 .ProseMirror {
   @apply p-2 min-h-[600px] max-w-full max-h-[1000px] overflow-y-auto outline-none rounded-md rounded-t-none border border-t-0 border-gray-300 focus:border-gray-500;
 }
@@ -36,16 +48,6 @@
 .ProseMirror h6 {
   @apply leading-[1.1];
 }
-
-/* .ProseMirror > h1 {
-  @apply text-3xl font-bold;
-}
-.ProseMirror > h2 {
-  @apply text-2xl font-bold;
-}
-.ProseMirror > h3 {
-  @apply text-xl font-bold;
-} */
 
 .ProseMirror > h1 {
   @apply text-[32px] font-bold;
@@ -103,7 +105,7 @@
 } */
 
 .ProseMirror a {
-  @apply text-blue-600  underline hover:text-blue-400 transition-colors duration-200;
+  @apply text-blue-600 underline hover:text-blue-400 transition-colors duration-200;
 }
 
 .ProseMirror blockquote {
@@ -112,16 +114,4 @@
 
 .ProseMirror hr {
   @apply my-8 border-t border-gray-400;
-}
-
-.tiptap-toolbar {
-  @apply z-10 flex flex-wrap items-center gap-1 p-2 rounded-t-md;
-}
-
-.tiptap-toolbar button {
-  @apply hover:bg-gray-200  px-1 min-w-[30px] h-[28px] flex justify-center items-center rounded disabled:opacity-50 disabled:hover:!bg-transparent;
-}
-
-.tiptap-toolbar .is-active {
-  @apply bg-gray-300 hover:bg-gray-300;
 }

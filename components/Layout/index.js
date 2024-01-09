@@ -29,7 +29,7 @@ function Layout({ children }) {
     <div className="lg:flex">
       <Sidebar navLinks={navLinks} />
 
-      <div className="lg:flex-1 relative">
+      <div className="lg:flex-1 relative overflow-x-auto">
         <main className="my-10 mx-2 lg:mx-7">{children}</main>
       </div>
     </div>

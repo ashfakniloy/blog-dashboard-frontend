@@ -22,7 +22,7 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
       >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form className="flex gap-5 min-h-screen">
-            <div className="w-full h-full max-w-[672px] 2xl:max-w-[1200px] border-r border-gray-300 pr-5">
+            <div className="w-full h-full max-w-[622px] 2xl:max-w-[1170px] border-r border-gray-300 pr-5">
               <div className="mt-5 space-y-9 ">
                 <InputField
                   label="Title:"
@@ -39,7 +39,10 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
 
                 <div className="mt-5">
                   <div className="mb-2 font-medium">Body:</div>
-                  <TextEditor />
+                  <TextEditor
+                    value={values.body}
+                    setValue={(html) => setFieldValue("body", html)}
+                  />
                 </div>
               </div>
             </div>
@@ -63,7 +66,6 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                       <IconDraft />
                     )}
                   </span>
-                  {/* {isPending ? <Spinner /> : <IconDraft />} */}
                   Save as Draft
                 </Button>
                 <Button
@@ -83,7 +85,6 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                       <IconSend />
                     )}
                   </span>
-                  {/* {isPending ? <Spinner /> : <IconSend />} */}
                   Publish
                 </Button>
               </div>

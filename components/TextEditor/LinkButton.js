@@ -1,8 +1,5 @@
-import { Editor } from "@tiptap/react";
 import { useState, useCallback } from "react";
 import { LinkIcon } from "./Icons/LinkIcon";
-import { Cancel } from "./Icons/Cancel";
-
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { RadioField } from "../FormFields/RadioField";
 import Button from "../ui/Button";
@@ -18,29 +15,7 @@ function LinkButton({ editor }) {
   const handleButtonClick = () => {
     setShowLinkModal(!showLinkModal);
     setUrl(editor?.getAttributes("link").href);
-    // setIsOpen(true);
-    // editor?.chain().focus().scrollIntoView().run();
-    // editor?.commands.focus();
-    // onClick={() => editor.chain().focus().setImage({src: '', alt: '', title: ''}).run()}
-    // disabled={!editor.can().chain().focus().undo().run()}
   };
-
-  // const handleAddLink = () => {
-  //   if (!url) return;
-
-  //   const { target = "_self", rel = null } =
-  //     editor?.getAttributes("link") || {};
-
-  //   editor
-  //     .chain()
-  //     .focus()
-  //     .extendMarkRange("link")
-  //     .setLink({ href: url, target, rel })
-  //     .run();
-
-  //   setShowLinkModal(false);
-  //   setUrl("");
-  // };
 
   const handleAddLink = () => {
     if (!url) return;
@@ -50,7 +25,6 @@ function LinkButton({ editor }) {
         ?.chain()
         .focus()
         .extendMarkRange("link")
-        // .setLink({ href: url, target: "_blank" })
         .setLink({ href: url, target: target, rel: rel })
         .run();
     } else {
@@ -86,25 +60,7 @@ function LinkButton({ editor }) {
       </DialogTrigger>
 
       <DialogContent className="px-[35px] py-[40px] relative bg-white  border border-gray-300 w-[644px] rounded-lg">
-        {/* <p className="font-medium">URL:</p> */}
-        {/* <button
-          type="button"
-          className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700"
-          onClick={() => setShowLinkModal(false)}
-        >
-          <Cancel />
-        </button> */}
-
         <form className="w-full">
-          {/* <input
-            type="url"
-            className="p-3 w-full outline-none bg-white rounded-md border border-custom-gray2 focus:border-gray-700"
-            name="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            autoComplete="off"
-            required
-          /> */}
           <label htmlFor="url" className="font-medium">
             URL:
           </label>
@@ -119,28 +75,7 @@ function LinkButton({ editor }) {
             autoComplete="off"
             required
           />
-          {/* <div className="flex items-center gap-3">
-            <label htmlFor="openInNewTab">
-              <input
-                type="checkbox"
-                id="openInNewTab"
-                checked={target === "_blank"}
-                onChange={() =>
-                  setTarget(target === "_blank" ? "_self" : "_blank")
-                }
-              />
-              Open in new tab
-            </label>
-            <label htmlFor="nofollow">
-              <input
-                type="checkbox"
-                id="nofollow"
-                checked={rel === "nofollow"}
-                onChange={() => setRel(rel === "nofollow" ? null : "nofollow")}
-              />
-              Nofollow
-            </label>
-          </div> */}
+
           <div className="mt-4 flex justify-between items-center">
             <div className="space-y-3">
               <RadioField
@@ -155,12 +90,6 @@ function LinkButton({ editor }) {
                 checked={rel === "noFollow"}
                 onChange={() => setRel("noFollow")}
               />
-              {/* <RadioField
-                label="No Follow"
-                name="relOptions"
-                checked={rel === "nofollow"}
-                onChange={() => setRel("noFollow")}
-              /> */}
             </div>
             <div className="space-y-3">
               <RadioField
@@ -182,13 +111,6 @@ function LinkButton({ editor }) {
             editor?.getAttributes("link").href !== url ||
             editor?.getAttributes("link").target !== target ||
             editor?.getAttributes("link").rel !== rel ? (
-              // <button
-              //   type="submit"
-              //   className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded text-sm font-bold hover:opacity-80 transition duration-200"
-              //   onClick={handleAddLink}
-              // >
-              //   Add
-              // </button>
               <Button
                 type="submit"
                 className="w-[150px]"
@@ -205,13 +127,6 @@ function LinkButton({ editor }) {
               >
                 Remove
               </Button>
-              // <button
-              //   type="button"
-              //   className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded text-sm font-bold hover:opacity-80 transition duration-200"
-              //   onClick={handleRemoveLink}
-              // >
-              //   Remove
-              // </button>
             )}
           </div>
         </form>

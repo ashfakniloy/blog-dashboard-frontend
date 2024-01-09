@@ -16,6 +16,7 @@ import { Paragraph } from "./Icons/Paragraph";
 // import { Heading3 } from "./Icons/Heading3";
 import LinkButton from "./LinkButton";
 import ImageUpload from "./ImageUpload";
+import TextSelect from "./TextSelect";
 // import YoutubeVideo from "./YoutubeVideo";
 
 const Toolbar = ({ editor }) => {
@@ -29,6 +30,8 @@ const Toolbar = ({ editor }) => {
         editor.isFocused ? "border-gray-500" : " border-gray-300"
       }`}
     >
+      <TextSelect editor={editor} />
+
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleBold().run()}
@@ -122,7 +125,7 @@ const Toolbar = ({ editor }) => {
       >
         clear nodes
       </button> */}
-      <button
+      {/* <button
         type="button"
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive("paragraph") ? "is-active" : ""}
@@ -139,9 +142,7 @@ const Toolbar = ({ editor }) => {
         title="Heading 1"
       >
         <span className="text-[15px] font-medium">H1</span>
-        {/* <span className="fill-gray-700">
-          <Heading1 />
-        </span> */}
+      
       </button>
       <button
         type="button"
@@ -150,9 +151,7 @@ const Toolbar = ({ editor }) => {
         title="Heading 2"
       >
         <span className="text-[15px] font-medium">H2</span>
-        {/* <span className="fill-gray-700">
-          <Heading2 />
-        </span> */}
+      
       </button>
       <button
         type="button"
@@ -161,9 +160,7 @@ const Toolbar = ({ editor }) => {
         title="Heading 3"
       >
         <span className="text-[15px] font-medium">H3</span>
-        {/* <span className="fill-gray-700">
-          <Heading3 />
-        </span> */}
+      
       </button>
       <button
         type="button"
@@ -188,7 +185,7 @@ const Toolbar = ({ editor }) => {
         title="Heading 6"
       >
         <span className="text-[15px] font-medium">H6</span>
-      </button>
+      </button> */}
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}

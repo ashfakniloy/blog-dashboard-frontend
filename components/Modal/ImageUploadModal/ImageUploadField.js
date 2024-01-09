@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import useTheme from "@/hooks/useTheme";
 import { IconCloudArrow } from "@/components/Icons";
-import { toast } from "sonner";
 import { Spinner } from "@/components/Loading/Spinner";
 import ImageSubmitForm from "./ImageSubmitForm";
-import Button from "@/components/ui/Button";
 import LogoSubmit from "./LogoSubmit";
+import {
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_FOLDER,
+  CLOUDINARY_UPLOAD_PRESET,
+} from "@/config";
 
 function ImageUploadField({
   imageUploading,
@@ -42,31 +46,30 @@ function ImageUploadField({
     // console.log("images", image);
     // return;
 
-    const cloud_name = "db56mzvzc";
-    const preset = "blog-dashboard";
-    const folder = "blog-dashboard";
+    // const cloud_name = "db56mzvzc";
+    // const preset = "blog-dashboard";
+    // const folder = "blog-dashboard";
 
     const formData = new FormData();
     formData.append("file", image);
-    formData.append("upload_preset", preset);
-    formData.append("cloud_name", cloud_name);
-    formData.append("folder", folder);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    formData.append("cloud_name", CLOUDINARY_CLOUD_NAME);
+    formData.append("folder", CLOUDINARY_FOLDER);
 
     setImageUploading(true);
 
+    // const cloudinary_url = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`
+    const cloudinary_url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
     try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(cloudinary_url, {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 
       if (response.ok) {
-        // set form value;
         setImageUrl(data.secure_url);
         setImageId(data.public_id);
         setImage(null);
@@ -99,7 +102,7 @@ function ImageUploadField({
     e.preventDefault();
 
     const image = e.target.files[0];
-    // handleImageUpload();
+
     setImage(image);
   };
 
@@ -136,8 +139,6 @@ function ImageUploadField({
     }
 
     setImage(droppedImage);
-
-    // handleImageUpload(image);
   };
 
   return (
@@ -162,12 +163,9 @@ function ImageUploadField({
           <input
             type="file"
             accept="image/*"
-            // id={name}
-            // {...register(name)}
+            id="image"
             onChange={handleImageChange}
             className="hidden"
-            // {...props}
-            id="image"
           />
 
           <label
@@ -222,7 +220,6 @@ function ImageUploadField({
                   <div className="mt-8 absolute right-3 bottom-3">
                     <LogoSubmit
                       logo={imageUrl}
-                      // setShowImageModal={setShowImageModal}
                       handleImageSubmit={handleImageSubmit}
                       imageSubmitting={imageSubmitting}
                     />

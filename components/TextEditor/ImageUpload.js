@@ -7,6 +7,7 @@ function ImageUpload({ editor }) {
 
   const handleImageSubmit = (imageValues) => {
     console.log("imageValues", imageValues);
+
     editor
       ?.chain()
       ?.focus()
