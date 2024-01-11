@@ -1,14 +1,27 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { InputField } from "../../FormFields/InputField";
+import usePostData from "@/hooks/usePostData";
+import { toast } from "sonner";
 
 function CanonicalUrlForm() {
   const initialValues = {
-    canonical_url: "",
+    canonical: "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("values", values);
+  const { mutate, isPending } = usePostData({
+    path: "/user/canonical",
+  });
+
+  const handleSubmit = (values, formik) => {
+    // console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Canonical url added`);
+        formik.resetForm();
+      },
+    });
   };
 
   return (
@@ -16,15 +29,10 @@ function CanonicalUrlForm() {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form className="">
-            <InputField
-              name="canonical_url"
-              type="text"
-              className=""
-              required
-            />
+            <InputField name="canonical" type="text" className="" required />
 
             <div className="mt-5">
-              <Button type="submit" className="px-5">
+              <Button type="submit" className="px-5" disabled={isPending}>
                 Canonical Url
               </Button>
             </div>

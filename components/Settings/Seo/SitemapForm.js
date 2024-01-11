@@ -1,14 +1,27 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { TextareaField } from "../../FormFields/TextareaField";
+import usePostData from "@/hooks/usePostData";
+import { toast } from "sonner";
 
 function SitemapForm({ values }) {
   const initialValues = {
     sitemap: values.sitemap || "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("values", values);
+  const { mutate, isPending } = usePostData({
+    path: "/user/sitemap",
+  });
+
+  const handleSubmit = (values, formik) => {
+    // console.log("values", values);
+    mutate(values, {
+      onSuccess: () => {
+        console.log("onsuccess");
+        toast.success(`Sitemap added`);
+        formik.resetForm();
+      },
+    });
   };
 
   return (
@@ -25,10 +38,10 @@ function SitemapForm({ values }) {
                 // autoFocus
               />
               <div className="mt-5 flex items-center gap-5">
-                <Button type="submit" className="px-9">
+                <Button type="submit" className="px-9" disabled={isPending}>
                   Save
                 </Button>
-                <Button type="button" className="px-9">
+                <Button type="button" className="px-9" disabled={isPending}>
                   Generate
                 </Button>
               </div>
