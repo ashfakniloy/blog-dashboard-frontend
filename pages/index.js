@@ -1,4 +1,5 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
+import Button from "@/components/ui/Button";
 import useGetData from "@/hooks/useGetData";
 import useTheme from "@/hooks/useTheme";
 
@@ -86,6 +87,10 @@ export default function Home() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="mt-16 flex justify-center">
+        <Button type="button">Connect with your search console</Button>
       </div>
     </PageWrapper>
   );
