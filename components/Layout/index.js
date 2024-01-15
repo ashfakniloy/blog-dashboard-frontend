@@ -8,7 +8,7 @@ import { useSiteInfo } from "@/lib/store";
 function Layout({ children }) {
   const { pathname } = useRouter();
 
-  const { setUsername, setLogo } = useSiteInfo();
+  const { setUsername, setLogo, setTheme } = useSiteInfo();
 
   const { data: settingsData, isPending } = useGetData({
     path: "/user/setting",
@@ -19,6 +19,7 @@ function Layout({ children }) {
   useEffect(() => {
     settingsData?.data.name && setUsername(settingsData.data.name);
     settingsData?.data.logo && setLogo(settingsData.data.logo);
+    settingsData?.data.color && setTheme(settingsData.data.color);
   }, [settingsData]);
 
   if (pathname === "/sign-in") {

@@ -1,3 +1,4 @@
+import ConsoleButton from "@/components/Console/ConsoleButton";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import Button from "@/components/ui/Button";
 import useGetData from "@/hooks/useGetData";
@@ -70,7 +71,7 @@ export default function Home() {
       isLoading={isPending}
     >
       <div className="mt-12 flex justify-center">
-        <Button type="button">Connect with your search console</Button>
+        <ConsoleButton />
       </div>
 
       <div className="mt-16">

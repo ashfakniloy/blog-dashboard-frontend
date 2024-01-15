@@ -1,15 +1,10 @@
+import ConsoleButton from "@/components/Console/ConsoleButton";
 import Button from "@/components/ui/Button";
 
 function SearchConsoleForm() {
-  const handleClick = () => {
-    console.log("console button clicked");
-  };
-
   return (
     <div>
-      <Button type="button" onClick={handleClick}>
-        Connect with your search console
-      </Button>
+      <ConsoleButton />
     </div>
   );
 }

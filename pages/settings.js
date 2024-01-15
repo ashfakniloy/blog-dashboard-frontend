@@ -23,10 +23,9 @@ function SettingsPage() {
 
   const data = {
     name: settingsData?.data.name,
-    // name: "Bayshore Communication",
-    color: theme,
+    // color: theme,
+    color: settingsData?.data.color || theme,
     email: settingsData?.data.email,
-    // logo: "/images/static-logo.png",
     logo: settingsData?.data.logo,
   };
 
