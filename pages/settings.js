@@ -14,9 +14,9 @@ function SettingsPage() {
     data: settingsData,
     // isLoading,
     isPending,
-    isError,
-    isFetched,
-    isSuccess,
+    // isError,
+    // isFetched,
+    // isSuccess,
   } = useGetData({ path: "/user/setting" });
 
   console.log("settingsData", settingsData);

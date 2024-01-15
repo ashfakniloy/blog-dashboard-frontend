@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import RobotsTextForm from "./RobotsTextForm";
+import RobotsTxtForm from "./RobotsTxtForm";
 import SitemapForm from "./SitemapForm";
 import SearchConsoleForm from "./SearchConsoleForm";
 import CanonicalUrlForm from "./CanonicalUrlForm";
 
 const valuesFromBackend = {
-  robot_text: "",
+  robots_txt: "",
   sitemap: "",
   discourage: false,
 };
@@ -20,9 +20,9 @@ function SeoSettings() {
       formComponent: SearchConsoleForm,
     },
     {
-      name: "RobotsText",
-      param: "robots_text",
-      formComponent: RobotsTextForm,
+      name: "RobotsTxt",
+      param: "robots_txt",
+      formComponent: RobotsTxtForm,
     },
     {
       name: "Sitemap",

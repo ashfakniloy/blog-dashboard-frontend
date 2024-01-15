@@ -1,15 +1,12 @@
 import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { TextareaField } from "../../FormFields/TextareaField";
-import { CheckboxField } from "../../FormFields/CheckboxField";
-import usePostData from "@/hooks/usePostData";
 import { toast } from "sonner";
+import { TextareaField } from "../../FormFields/TextareaField";
+import usePostData from "@/hooks/usePostData";
 
-function RobotsTextForm({ values }) {
+function RobotsTxtForm({ values }) {
   const initialValues = {
-    // robotstext: values.robot_text || "",
-    robotTxt: values.robot_text || "",
-    // discourage: values.discourage || false,
+    robotsTxt: values.robots_txt || "",
   };
 
   const { mutate, isPending } = usePostData({
@@ -19,7 +16,7 @@ function RobotsTextForm({ values }) {
   const handleSubmit = (values, formik) => {
     // console.log("values", values);
     const singleValue = {
-      robotTxt: values.robotTxt,
+      robotsTxt: values.robotsTxt,
     };
 
     mutate(singleValue, {
@@ -38,24 +35,16 @@ function RobotsTextForm({ values }) {
           <Form className="">
             <div className="">
               <TextareaField
-                name="robotTxt"
+                name="robotsTxt"
                 className="w-full"
                 required
                 rows={6}
                 // autoFocus
               />
-              <div className="mt-5">
-                <CheckboxField
-                  label="Discourage Search Engine"
-                  name="discourage"
-                />
-              </div>
+
               <div className="mt-5 flex items-center gap-5">
                 <Button type="submit" className="px-9" disabled={isPending}>
                   Save
-                </Button>
-                <Button type="button" className="px-9" disabled={isPending}>
-                  Generate
                 </Button>
               </div>
             </div>
@@ -66,4 +55,4 @@ function RobotsTextForm({ values }) {
   );
 }
 
-export default RobotsTextForm;
+export default RobotsTxtForm;

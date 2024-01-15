@@ -69,7 +69,11 @@ export default function Home() {
       heading="Dashboard"
       isLoading={isPending}
     >
-      <div className="mt-5">
+      <div className="mt-12 flex justify-center">
+        <Button type="button">Connect with your search console</Button>
+      </div>
+
+      <div className="mt-16">
         {dashboardData?.data && (
           <div className="">
             <p className="text-[35px] font-bold">Messages</p>
@@ -87,10 +91,6 @@ export default function Home() {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="mt-16 flex justify-center">
-        <Button type="button">Connect with your search console</Button>
       </div>
     </PageWrapper>
   );

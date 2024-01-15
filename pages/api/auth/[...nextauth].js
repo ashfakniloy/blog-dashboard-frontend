@@ -28,8 +28,8 @@ export const authOptions = {
           return user;
         } else {
           console.log("error", user);
-          // throw new Error(user.error);
-          throw new Error(user.status);
+
+          throw new Error(user.error);
         }
       },
     }),

@@ -1,20 +1,15 @@
-import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
-import { InputField } from "../../FormFields/InputField";
-import Link from "next/link";
 
 function SearchConsoleForm() {
-  const initialValues = {
-    search_console: "",
-  };
-
-  const handleSubmit = (values) => {
-    console.log("values", values);
+  const handleClick = () => {
+    console.log("console button clicked");
   };
 
   return (
     <div>
-      <Button type="button">Connect with your search console</Button>
+      <Button type="button" onClick={handleClick}>
+        Connect with your search console
+      </Button>
     </div>
   );
 }

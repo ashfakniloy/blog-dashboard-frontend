@@ -41,9 +41,6 @@ function SitemapForm({ values }) {
                 <Button type="submit" className="px-9" disabled={isPending}>
                   Save
                 </Button>
-                <Button type="button" className="px-9" disabled={isPending}>
-                  Generate
-                </Button>
               </div>
             </div>
           </Form>
