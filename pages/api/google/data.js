@@ -20,21 +20,24 @@ const oauth2Client = new google.auth.OAuth2(
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const res = await fetch(`${API_URL}/exchange-token`);
-      if (res.status === 200) {
-        const tokenData = await res.json();
-        oauth2Client.setCredentials(tokenData.tokens[0]);
-        const searchConsole = google.searchconsole({
-          version: 'v1',
-          auth: oauth2Client,
-        });
-        const { data } = await searchConsole.searchanalytics.query({
-          siteUrl: 'https://thecatflix.com',
-          startDate: '2023-12-12',
-          endDate: '2024-01-10',
-          dimensions: ['date'],
-        });
-        return res.status(200).json(data);
+      const resolve = await fetch(`${API_URL}/exchange-token`);
+      if (resolve.status === 200) {
+        const tokenData = await resolve.json();
+        if (tokenData.tokens.length) {
+          oauth2Client.setCredentials(tokenData.tokens[0]);
+          const searchConsole = google.searchconsole({
+            version: 'v1',
+            auth: oauth2Client,
+          });
+          const { data } = await searchConsole.searchanalytics.query({
+            siteUrl: 'https://thecatflix.com',
+            startDate: '2023-12-12',
+            endDate: '2024-01-10',
+            dimensions: ['date'],
+          });
+          return res.status(200).json(data);
+        }
+        return res.status(200).json({ error: 'Error executing request' });
       }
 
       // return NextResponse.json(data);
