@@ -1,5 +1,6 @@
 import { google } from "googleapis";
-import fs from "fs";
+// import fs from "fs";
+import { API_URL } from "@/config";
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
@@ -7,10 +8,17 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 
-function getCredentials() {
+async function getCredentials() {
   try {
-    const creds = fs.readFileSync("creds.json");
-    oauth2Client.setCredentials(JSON.parse(creds));
+    // const creds = fs.readFileSync("creds.json");
+    const res = await fetch(`${API_URL}/exchange-token`);
+    const data = res.json();
+
+    if (data.length) {
+      const token = data.tokens[0];
+
+      oauth2Client.setCredentials(token);
+    }
   } catch (error) {
     console.log("No creds found");
   }
@@ -28,7 +36,14 @@ export default async function handler(req, res) {
     try {
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
-      fs.writeFileSync("creds.json", JSON.stringify(tokens));
+      // fs.writeFileSync("creds.json", JSON.stringify(tokens));
+      const res = await fetch(`${API_URL}/exhange-token`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tokenData: tokens }),
+      });
 
       // const mainUrl = url.origin;
 
@@ -56,6 +71,7 @@ export default async function handler(req, res) {
       "https://www.googleapis.com/auth/webmasters",
       "https://www.googleapis.com/auth/webmasters.readonly",
     ];
+
     const url = oauth2Client.generateAuthUrl({
       access_type: "offline",
       scope: scopes,

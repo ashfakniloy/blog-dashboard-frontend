@@ -1,5 +1,6 @@
 import { google } from "googleapis";
-import fs from "fs";
+// import fs from "fs";
+import { API_URL } from "@/config";
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
@@ -7,10 +8,26 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 
-function getCredentials() {
+// function getCredentials() {
+//   try {
+//     const creds = fs.readFileSync("creds.json");
+//     oauth2Client.setCredentials(JSON.parse(creds));
+//   } catch (error) {
+//     console.log("No creds found");
+//   }
+// }
+
+async function getCredentials() {
   try {
-    const creds = fs.readFileSync("creds.json");
-    oauth2Client.setCredentials(JSON.parse(creds));
+    // const creds = fs.readFileSync("creds.json");
+    const res = await fetch(`${API_URL}/exchange-token`);
+    const data = res.json();
+
+    if (data.length) {
+      const token = data.tokens[0];
+
+      oauth2Client.setCredentials(token);
+    }
   } catch (error) {
     console.log("No creds found");
   }
