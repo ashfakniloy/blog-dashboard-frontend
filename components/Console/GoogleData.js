@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import useGoogleData from "@/hooks/useGoogleData";
-import DisplayData from "./DisplayData";
-import ConsoleButton from "./ConsoleButton";
+import { useEffect, useState } from 'react';
+import useGoogleData from '@/hooks/useGoogleData';
+import DisplayData from './DisplayData';
+import ConsoleButton from './ConsoleButton';
 
 function GoogleData() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
 
   const {
     data: googleData,
@@ -38,7 +38,7 @@ function GoogleData() {
   return (
     <div className="mt-12 flex justify-center">
       {googlePending ? (
-        "Loading..."
+        'Loading...'
       ) : data ? (
         <DisplayData consoleData={data} />
       ) : (
