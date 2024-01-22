@@ -45,7 +45,7 @@ async function fetchSearchAnalyticsData(searchConsole) {
   const { data } = await searchConsole.searchanalytics.query({
     siteUrl: 'https://thecatflix.com',
     startDate: '2023-12-20',
-    endDate: '2024-01-19',
+    endDate: '2024-01-21',
     dimensions: ['date'],
   });
 
