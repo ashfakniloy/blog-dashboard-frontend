@@ -14,11 +14,8 @@ export default async function handler(req, res) {
     const { code } = req.query;
 
     try {
-      console.log('start');
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
-      console.log(tokens);
-      console.log('step 1');
       const savedData = await axios.post(
         'https://bayshore-backend.vercel.app/exchange-token',
         {
@@ -52,6 +49,7 @@ export default async function handler(req, res) {
 
         const scopes = [
           'https://www.googleapis.com/auth/userinfo.profile',
+          'https://www.googleapis.com/auth/userinfo.email',
           'https://www.googleapis.com/auth/webmasters',
           'https://www.googleapis.com/auth/webmasters.readonly',
         ];
@@ -64,7 +62,7 @@ export default async function handler(req, res) {
         return res.status(200).json({ url });
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }
