@@ -26,6 +26,7 @@ function EditBlogPage() {
     author: blogData?.author || "",
     category: blogData?.category || [],
     featuredImage: blogData?.featuredImage || {},
+    bodyImage: blogData?.bodyImage || [],
     metaDescription: blogData?.metaDescription || "",
     slug: blogData?.slug || "",
     published: blogData?.published || false,

@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useFormikContext } from "formik";
 import { ImageIcon } from "./Icons/ImageIcon";
 import ImageUploadModal from "../Modal/ImageUploadModal";
 
 function ImageUpload({ editor }) {
   const [showImageModal, setShowImageModal] = useState(false);
+  const { setFieldValue, values } = useFormikContext();
+
+  const bodyImageValue = values?.bodyImage;
 
   const handleImageSubmit = (imageValues) => {
     console.log("imageValues", imageValues);
@@ -17,6 +21,8 @@ function ImageUpload({ editor }) {
         title: imageValues.imageTitle,
       })
       .run();
+
+    setFieldValue("bodyImage", [...bodyImageValue, imageValues]);
 
     setShowImageModal(false);
   };

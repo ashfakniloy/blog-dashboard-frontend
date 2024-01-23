@@ -12,6 +12,7 @@ function AddBlogPage() {
     author: "",
     category: [],
     featuredImage: {},
+    bodyImage: [],
     metaDescription: "",
     slug: "",
     published: false,
@@ -23,7 +24,7 @@ function AddBlogPage() {
     path: "/category",
   });
 
-  console.log("categoriesData", categoriesData);
+  // console.log("categoriesData", categoriesData);
 
   const { mutate, isPending } = usePostData({
     path: "/blog",

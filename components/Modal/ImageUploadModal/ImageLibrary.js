@@ -33,6 +33,14 @@ function ImageLibrary({ setShowImageModal, handleImageSubmit }) {
     }
   };
 
+  // const handleImageClick = (media) => {
+  //   if (selectedImage?._id === media._id) {
+  //     setSelectedImage(null);
+  //   } else {
+  //     setSelectedImage(media);
+  //   }
+  // };
+
   const handleSaveImage = () => {
     const imageValues = {
       image: selectedImage.image,
@@ -57,12 +65,13 @@ function ImageLibrary({ setShowImageModal, handleImageSubmit }) {
         </div>
       ) : (
         <>
-          {mediaData?.data.length > 0 ? (
+          {mediaData?.media.length > 0 ? (
             <>
               <ScrollArea className="h-[350px] 2xl:h-[430px] relative">
                 <div className="p-3 grid grid-cols-4 2xl:grid-cols-5 justify-items-center gap-7 overflow-x-hidden overflow-y-auto">
-                  {mediaData?.data.map((media) => (
+                  {mediaData?.media.map((media) => (
                     <div
+                      // key={media._id}
                       key={media._id}
                       className={`relative size-[150px] rounded-md overflow-hidden cursor-pointer`}
                       onClick={() => handleImageClick(media)}
@@ -82,6 +91,13 @@ function ImageLibrary({ setShowImageModal, handleImageSubmit }) {
                           </div>
                         </div>
                       )}
+                      {/* {selectedImage?._id === media._id && (
+                        <div className="absolute inset-0 border-[6px] border-cyan-400 rounded-md">
+                          <div className="absolute top-0 right-0 size-6 flex justify-center items-center bg-cyan-400 border border-white text-white">
+                            <IconTick />
+                          </div>
+                        </div>
+                      )} */}
                     </div>
                   ))}
                 </div>
