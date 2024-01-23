@@ -24,7 +24,7 @@ function SigninPage() {
 
   const { signin } = useSignin();
 
-  console.log("data", logo);
+  // console.log("data", logo);
 
   const handleSubmit = async (values) => {
     // console.log(values);

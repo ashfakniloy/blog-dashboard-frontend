@@ -17,7 +17,7 @@ function SitemapForm({ values }) {
     // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Sitemap added`);
         formik.resetForm();
       },

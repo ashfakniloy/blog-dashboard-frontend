@@ -19,7 +19,7 @@ function DeleteBlog({ blogInfo }) {
       {},
       {
         onSuccess: () => {
-          console.log("onsuccess");
+          // console.log("onsuccess");
           toast.success(`Blog deleted`);
           setShowDeleteModal(false);
         },

@@ -40,7 +40,7 @@ function EditBlogPage() {
   });
 
   const handleSubmit = (values, formik) => {
-    console.log("values", values);
+    // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
         router.push("/blog");

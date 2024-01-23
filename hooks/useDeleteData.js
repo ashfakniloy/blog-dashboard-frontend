@@ -28,7 +28,7 @@ function useDeleteData({ path, revalidate }) {
     mutationFn: postFn,
     onSuccess: (data) => {
       queryClient.invalidateQueries([revalidate]);
-      console.log(data);
+      // console.log(data);
     },
     onError: (error) => {
       console.log("error is", error.response.data);

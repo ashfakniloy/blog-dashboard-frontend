@@ -11,11 +11,11 @@ function ColorChange({ color }) {
   });
 
   const handleSubmit = (values, formik) => {
-    console.log("values", values);
+    // console.log("values", values);
 
     mutate(values, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Color changed successfully`);
       },
     });

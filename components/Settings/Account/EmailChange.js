@@ -22,7 +22,7 @@ function EmailChange({ currentEmail }) {
     // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Email changed successfully`);
         formik.resetForm();
         setEmailState(values.email);

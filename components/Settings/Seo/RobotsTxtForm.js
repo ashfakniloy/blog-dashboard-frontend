@@ -21,7 +21,7 @@ function RobotsTxtForm({ values }) {
 
     mutate(singleValue, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Robots text added`);
         formik.resetForm();
       },

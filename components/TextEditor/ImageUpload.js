@@ -10,7 +10,7 @@ function ImageUpload({ editor }) {
   const bodyImageValue = values?.bodyImage;
 
   const handleImageSubmit = (imageValues) => {
-    console.log("imageValues", imageValues);
+    // console.log("imageValues", imageValues);
 
     editor
       ?.chain()

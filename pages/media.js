@@ -34,7 +34,7 @@ function MediaPage() {
     // console.log("imageValues", imageValues);
     mutate(imageValues, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Media added`);
         formik.resetForm();
       },

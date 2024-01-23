@@ -18,10 +18,10 @@ function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
   });
 
   const handleSubmit = (values) => {
-    console.log("values", values);
+    // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Image details changed`);
         setImageTitleState(values.imageTitle);
         // formik.resetForm();
