@@ -39,7 +39,7 @@ function EmailChange({ currentEmail }) {
         enableReinitialize
       >
         {({ isSubmitting, resetForm }) => (
-          <Form className="">
+          <Form>
             <label htmlFor="">Email</label>
             <div className="flex w-full items-center gap-5">
               {isSelected ? (
@@ -51,7 +51,6 @@ function EmailChange({ currentEmail }) {
                 />
               ) : (
                 <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
-                  {/* {currentEmail} */}
                   {emailState}
                 </p>
               )}

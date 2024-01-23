@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Form, Formik } from "formik";
 import useSignin from "@/hooks/useSignin";
+import useGetDataPublic from "@/hooks/useGetDataPublic";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import { EmailField } from "@/components/FormFields/EmailField";
 import { PasswordField } from "@/components/FormFields/PasswordField";
 import { CheckboxField } from "@/components/FormFields/CheckboxField";
-import Button from "@/components/ui/Button";
 import { Spinner } from "@/components/Loading/Spinner";
-import useGetDataPublic from "@/hooks/useGetDataPublic";
+import Button from "@/components/ui/Button";
 
 function SigninPage() {
   const initialValues = {
@@ -36,7 +36,6 @@ function SigninPage() {
       <div className="min-h-screen flex bg-custom-gray3">
         <div className="flex-1 flex relative">
           <div className="flex items-center w-[70%] justify-center z-10 text-5xl font-bold bg-white text-black">
-            {/* <div className="relative w-[461px] h-[286px]"> */}
             <div className="ml-[20%] relative w-[340px] h-[210px]">
               {logo && (
                 <Image
@@ -48,12 +47,6 @@ function SigninPage() {
                   className="object-cover"
                 />
               )}
-              {/* <Image
-                src="/images/static-logo.png"
-                alt="static logo"
-                fill
-                className="object-cover"
-              /> */}
             </div>
           </div>
 

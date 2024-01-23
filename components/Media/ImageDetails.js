@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MediaForm from "./MediaForm";
 import { getFormattedDate } from "@/utils/getFormattedDate";
 import { ScrollArea } from "../ui/scroll-area";
@@ -32,13 +32,11 @@ function ImageDetails({ selectedImage }) {
           </div>
 
           <div className="text-sm text-gray-500 leading-6">
-            {/* <p className="font-semibold">{selectedImage.imageTitle}</p> */}
             <p className="font-semibold">{imageTitleState}</p>
-            <p className="">{getFormattedDate(selectedImage.createdAt)}</p>
-            <p className="">
+            <p>{getFormattedDate(selectedImage.createdAt)}</p>
+            <p>
               {imageSize?.width} x {imageSize?.height}
             </p>
-            {/* <p className="">{selectedImage.size}</p> */}
           </div>
         </div>
       </div>

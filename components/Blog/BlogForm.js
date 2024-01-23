@@ -97,7 +97,7 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                   type="text"
                   required
                 />
-                <div className="">
+                <div>
                   <p className="font-medium mb-2">Category:</p>
                   <div className="flex flex-wrap gap-x-5 gap-y-2">
                     {categoriesData?.data?.length ? (
@@ -110,18 +110,17 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                         />
                       ))
                     ) : (
-                      <p className="">No categories found</p>
+                      <p>No categories found</p>
                     )}
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <p className="mb-2 font-medium">Featured Image:</p>
                   <div className="relative h-[160px] w-full rounded-md overflow-hidden border-gray-400 bg-gray-100 flex justify-center items-center">
                     {!values?.featuredImage?.image?.url ? (
                       <ImageUploadModal
                         withLibrary
-                        // setFieldValue={setFieldValue}
                         showImageModal={showImageModal}
                         setShowImageModal={setShowImageModal}
                         handleImageSubmit={(values) =>
@@ -131,7 +130,6 @@ function BlogForm({ initialValues, handleSubmit, isPending, categoriesData }) {
                         <button
                           type="button"
                           className="w-full h-full flex justify-center items-center"
-                          // className="h-[160px] w-full rounded-md border-gray-400 bg-gray-100 flex justify-center items-center"
                         >
                           <div className="flex items-center gap-1.5 text-sm text-gray-600">
                             <span>

@@ -10,10 +10,6 @@
 
   /* firefox */
   @supports (scrollbar-color: grey transparent) {
-    /* * {
-      scrollbar-color: grey transparent;
-      scrollbar-width: thin;
-    } */
     .sidebar {
       scrollbar-width: none;
     }
@@ -99,10 +95,6 @@
 .ProseMirror img {
   @apply h-auto max-w-full inline;
 }
-
-/* .ProseMirror a {
-  @apply text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600;
-} */
 
 .ProseMirror a {
   @apply text-blue-600 underline hover:text-blue-400 transition-colors duration-200;

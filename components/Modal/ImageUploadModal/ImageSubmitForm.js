@@ -2,13 +2,11 @@ import { Form, Formik } from "formik";
 import Button from "@/components/ui/Button";
 import { InputField } from "@/components/FormFields/InputField";
 import { TextareaField } from "@/components/FormFields/TextareaField";
-import usePostData from "@/hooks/usePostData";
 import { Spinner } from "@/components/Loading/Spinner";
 
 function ImageSubmitForm({
   imageId,
   imageUrl,
-  setShowImageModal,
   handleImageSubmit,
   imageSubmitting,
 }) {
@@ -21,31 +19,9 @@ function ImageSubmitForm({
     },
   };
 
-  // const { mutate, isPending } = usePostData({
-  //   path: "/media",
-  //   revalidate: "/media",
-  // });
-
   const handleSubmit = (values, formik) => {
-    console.log("values", values);
-
+    // console.log("values", values);
     handleImageSubmit(values, formik);
-
-    // if (setFieldValue) {
-    //   setFieldValue("featuredImage", values);
-    //   setShowImageModal(false);
-    // } else {
-    //   mutate(values, {
-    //     onSuccess: () => {
-    //       console.log("onsuccess");
-    //       toast.success(`Media added`);
-    //       formik.resetForm();
-    //     },
-    //     onSettled: () => {
-    //       setShowImageModal(false);
-    //     },
-    //   });
-    // }
   };
 
   return (
@@ -58,7 +34,6 @@ function ImageSubmitForm({
               placeholder="Your text here"
               name="imageTitle"
               type="text"
-              className=""
               required
             />
             <TextareaField

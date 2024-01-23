@@ -1,15 +1,14 @@
+import useGetDataPublic from "@/hooks/useGetDataPublic";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import Table from "@/components/Table";
 import { messagesColumn } from "@/components/Table/columns/messages-column";
-import useGetDataPublic from "@/hooks/useGetDataPublic";
-// import { messagesData } from "@/mockData/messagesData";
 
 function MessagePage() {
   const { data: messagesData, isPending } = useGetDataPublic({
     path: "/user/messages",
   });
 
-  console.log("data", messagesData);
+  // console.log("data", messagesData);
 
   return (
     <PageWrapper

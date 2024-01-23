@@ -1,5 +1,5 @@
-import useToggle from "@/hooks/useToggle";
 import { useEffect, useMemo, useState } from "react";
+import useToggle from "@/hooks/useToggle";
 import { IconAngleDown, IconAngleUp } from "../Icons";
 
 function TextSelect({ editor }) {
@@ -65,7 +65,7 @@ function TextSelect({ editor }) {
         onClick={() => setToggle(!toggle)}
       >
         {selectedOption}
-        <span className="">{toggle ? <IconAngleUp /> : <IconAngleDown />}</span>
+        <span>{toggle ? <IconAngleUp /> : <IconAngleDown />}</span>
       </button>
 
       <div className="relative">

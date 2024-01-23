@@ -11,8 +11,6 @@ function Button({
   className,
   ...props
 }) {
-  // const { theme } = useSiteInfo();
-
   const theme = useTheme();
 
   return (
@@ -28,11 +26,6 @@ function Button({
         backgroundColor: variant === "outline" ? "transparent" : theme,
         color: variant === "outline" ? theme : "white",
       }}
-      // className={cn(
-      //   "px-4 py-2 rounded-full border border-custom-orange bg-custom-orange text-white disabled:pointer-events-none disabled:opacity-50",
-      //   variant === "outline" && "bg-transparent text-custom-orange",
-      //   className
-      // )}
       disabled={disabled}
       {...props}
     >

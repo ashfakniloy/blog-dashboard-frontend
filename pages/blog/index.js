@@ -1,14 +1,13 @@
+import useGetData from "@/hooks/useGetData";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import Table from "@/components/Table";
 import { blogsColumn } from "@/components/Table/columns/blogs-column";
 import LinkButton from "@/components/ui/LinkButton";
-import useGetData from "@/hooks/useGetData";
-// import { blogsData } from "@/mockData/blogsData";
 
 function BlogPage() {
   const { data: blogsData, isPending } = useGetData({ path: "/blog" });
 
-  console.log("blogdata", blogsData);
+  // console.log("blogdata", blogsData);
 
   return (
     <PageWrapper
@@ -26,8 +25,6 @@ function BlogPage() {
       ) : (
         <p className="mt-10 text-center font-bold text-lg">No blogs found</p>
       )}
-
-      {/* <Table columns={blogsColumn} data={blogsData} /> */}
     </PageWrapper>
   );
 }

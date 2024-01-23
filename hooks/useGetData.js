@@ -1,6 +1,6 @@
-import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { API_URL } from "@/config";
 
 function useGetData({ path }) {

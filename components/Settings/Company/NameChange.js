@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
 import { toast } from "sonner";
+import usePostData from "@/hooks/usePostData";
 import { InputField2 } from "../../FormFields/InputField";
 import Button from "@/components/ui/Button";
-import usePostData from "@/hooks/usePostData";
 
 function NameChange({ name }) {
   const [isSelected, setIsSelected] = useState(false);
@@ -13,18 +13,16 @@ function NameChange({ name }) {
     name: name || "",
   };
 
-  const { mutate, isPending, variables } = usePostData({
+  const { mutate, isPending } = usePostData({
     path: "/user/change/name",
     revalidate: "/user/setting",
   });
-
-  console.log("variables", variables);
 
   const handleSubmit = (values, formik) => {
     // console.log("values", values);
     mutate(values, {
       onSuccess: () => {
-        console.log("onsuccess");
+        // console.log("onsuccess");
         toast.success(`Name changed successfully`);
         formik.resetForm();
         setNameState(values.name);
@@ -40,7 +38,7 @@ function NameChange({ name }) {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, resetForm }) => (
-        <Form className="">
+        <Form>
           <label htmlFor="">Name</label>
           <div className="flex w-full items-center gap-5">
             {isSelected ? (
@@ -52,9 +50,7 @@ function NameChange({ name }) {
               />
             ) : (
               <p className="pl-0.5 pt-1 font-bold text-gray-400 text-2xl w-full">
-                {/* {name} */}
                 {nameState}
-                {/* {isPending ? variables.name : name} */}
               </p>
             )}
             {!isSelected ? (

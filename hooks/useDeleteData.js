@@ -1,7 +1,7 @@
 import axios from "axios";
+import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { API_URL } from "@/config";
 
 function useDeleteData({ path, revalidate }) {

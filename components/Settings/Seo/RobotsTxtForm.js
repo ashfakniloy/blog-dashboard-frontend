@@ -1,8 +1,8 @@
 import { Form, Formik } from "formik";
-import Button from "@/components/ui/Button";
 import { toast } from "sonner";
-import { TextareaField } from "../../FormFields/TextareaField";
 import usePostData from "@/hooks/usePostData";
+import Button from "@/components/ui/Button";
+import { TextareaField } from "../../FormFields/TextareaField";
 
 function RobotsTxtForm({ values }) {
   const initialValues = {
@@ -32,14 +32,13 @@ function RobotsTxtForm({ values }) {
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
-          <Form className="">
-            <div className="">
+          <Form>
+            <div>
               <TextareaField
                 name="robotsTxt"
                 className="w-full"
                 required
                 rows={6}
-                // autoFocus
               />
 
               <div className="mt-5 flex items-center gap-5">

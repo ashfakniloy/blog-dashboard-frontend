@@ -34,7 +34,7 @@ function CategoryForm() {
     <div className="mt-8">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting, setFieldValue }) => (
-          <Form className="">
+          <Form>
             <div className="space-y-9 w-full">
               <div className="flex items-center w-full gap-14">
                 <InputField

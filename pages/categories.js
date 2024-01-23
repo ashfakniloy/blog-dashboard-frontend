@@ -1,9 +1,8 @@
+import useGetData from "@/hooks/useGetData";
 import CategoryForm from "@/components/Category/CategoryForm";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import Table from "@/components/Table";
 import { categoriesColumn } from "@/components/Table/columns/categories-column";
-import useGetData from "@/hooks/useGetData";
-// import { categoriesData } from "@/mockData/categoriesData";
 
 function CategoriesPage() {
   const { data: categoriesData, isPending } = useGetData({ path: "/category" });
@@ -24,8 +23,6 @@ function CategoriesPage() {
       ) : (
         <p className="mt-10 text-center font-bold text-lg">No results</p>
       )}
-
-      {/* <Table columns={categoriesColumn} data={categoriesData} /> */}
     </PageWrapper>
   );
 }

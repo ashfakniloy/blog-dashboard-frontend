@@ -21,7 +21,7 @@ function MessageCount({ dashboardData }) {
   return (
     <>
       {dashboardData?.data && (
-        <div className="">
+        <div>
           <p className="text-[35px] font-bold">Messages</p>
           <div className="mt-4 flex justify-between items-center gap-5">
             {messagesCount.map((message) => (

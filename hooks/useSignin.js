@@ -1,6 +1,6 @@
+import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { toast } from "sonner";
 
 function useSignin() {
   const router = useRouter();
@@ -13,8 +13,7 @@ function useSignin() {
       });
 
       if (response?.ok) {
-        console.log(response);
-        // toast.success("Welcome Admin");
+        // console.log(response);
         router.push("/");
       } else if (response?.error) {
         console.log("error response", response.error);

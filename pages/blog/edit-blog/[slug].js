@@ -32,7 +32,7 @@ function EditBlogPage() {
     published: blogData?.published || false,
   };
 
-  console.log("single blog", data?.success);
+  // console.log("single blog", data?.success);
 
   const { mutate, isPending } = usePostData({
     path: `/blog/edit/${blogData?._id}`,

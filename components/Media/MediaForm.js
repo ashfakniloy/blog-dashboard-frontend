@@ -1,10 +1,10 @@
 import { Form, Formik } from "formik";
+import { toast } from "sonner";
+import usePostData from "@/hooks/usePostData";
 import Button from "@/components/ui/Button";
 import { InputField } from "../FormFields/InputField";
 import { TextareaField } from "../FormFields/TextareaField";
-import usePostData from "@/hooks/usePostData";
 import { Spinner } from "../Loading/Spinner";
-import { toast } from "sonner";
 
 function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
   const initialValues = {
@@ -43,25 +43,14 @@ function MediaForm({ id, imageTitle, altText, setImageTitleState }) {
               placeholder="Your text here"
               name="imageTitle"
               type="text"
-              className=""
               required
             />
             <TextareaField
               label="Alt Text"
               placeholder="Your text here"
               name="altText"
-              // type="text"
-              className=""
               required
             />
-            {/* <InputField
-              label="Alt Text"
-              placeholder="Your text here"
-              name="altText"
-              type="text"
-              className=""
-              required
-            /> */}
 
             <div className="mt-5 flex items-center gap-3">
               <Button type="submit" className="px-8" disabled={isPending}>

@@ -7,7 +7,7 @@ export const CheckboxField = ({ label, className, ...props }) => {
       className="inline-flex items-center gap-2 cursor-pointer"
     >
       <Field id={label} type="checkbox" className="cursor-pointer" {...props} />
-      <span className="">{label}</span>
+      <span>{label}</span>
     </label>
   );
 };

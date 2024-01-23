@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import RobotsTxtForm from "./RobotsTxtForm";
@@ -49,10 +49,6 @@ function SeoSettings() {
   }, []);
 
   if (!isLoaded) return;
-
-  // const selectedOption =
-  //   seoOptions.find((option) => option.param === optionParam) ||
-  //   seoOptions.find((option) => option.param === defaultOption);
 
   const selectedOption =
     seoOptions.find((option) => option.param === optionParam) ||

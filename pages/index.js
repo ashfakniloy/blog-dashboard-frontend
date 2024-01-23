@@ -1,7 +1,7 @@
+import useGetData from "@/hooks/useGetData";
 import GoogleData from "@/components/Console/GoogleData";
 import MessageCount from "@/components/Dashboard/MessageCount";
 import PageWrapper from "@/components/Layout/PageWrapper";
-import useGetData from "@/hooks/useGetData";
 
 export default function Home() {
   const { data: dashboardData, isPending } = useGetData({

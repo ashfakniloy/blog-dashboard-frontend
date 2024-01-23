@@ -3,14 +3,12 @@ import { useRouter } from "next/router";
 import { PageSpinner } from "../Loading/Spinner";
 import useTheme from "@/hooks/useTheme";
 import useUsername from "@/hooks/useUsername";
-// import useLogo from "@/hooks/useLogo";
 
 function PageWrapper({ title, description, heading, isLoading, children }) {
   const { pathname } = useRouter();
 
   const theme = useTheme();
   const username = useUsername();
-  // const logo = useLogo();
 
   return (
     <div className="relative">

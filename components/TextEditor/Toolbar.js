@@ -10,14 +10,9 @@ import { HorizontalRule } from "./Icons/HorizontalRule";
 import { ClearFormatting } from "./Icons/ClearFormatting";
 import { Reset } from "./Icons/Reset";
 import { PageBreak } from "./Icons/PageBreak";
-import { Paragraph } from "./Icons/Paragraph";
-// import { Heading1 } from "./Icons/Heading1";
-// import { Heading2 } from "./Icons/Heading2";
-// import { Heading3 } from "./Icons/Heading3";
 import LinkButton from "./LinkButton";
 import ImageUpload from "./ImageUpload";
 import TextSelect from "./TextSelect";
-// import YoutubeVideo from "./YoutubeVideo";
 
 const Toolbar = ({ editor }) => {
   if (!editor) {
@@ -41,6 +36,7 @@ const Toolbar = ({ editor }) => {
       >
         <b>B</b>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -50,6 +46,7 @@ const Toolbar = ({ editor }) => {
       >
         <i className="font-serif">I</i>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleUnderline().run()}
@@ -58,40 +55,29 @@ const Toolbar = ({ editor }) => {
       >
         <span className="underline underline-offset-2">U</span>
       </button>
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleStrike().run()}
-        disabled={!editor.can().chain().focus().toggleStrike().run()}
-        className={editor.isActive("strike") ? "is-active" : ""}
-      >
-        strike
-      </button> */}
+
       <button
         type="button"
         onClick={() => editor.chain().focus().setTextAlign("left").run()}
         className={editor.isActive({ textAlign: "left" }) ? "is-active" : ""}
         title="Align left"
       >
-        <span
-          className="fill-gray-700"
-          // className={currentTheme === "dark" ? "fill-white" : "fill-gray-700"}
-        >
+        <span className="fill-gray-700">
           <AlignLeft />
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().setTextAlign("center").run()}
         className={editor.isActive({ textAlign: "center" }) ? "is-active" : ""}
         title="Align center"
       >
-        <span
-          className="fill-gray-700"
-          // className={currentTheme === "dark" ? "fill-white" : "fill-gray-700"}
-        >
+        <span className="fill-gray-700">
           <AlignCenter />
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().setTextAlign("right").run()}
@@ -102,14 +88,7 @@ const Toolbar = ({ editor }) => {
           <AlignRight />
         </span>
       </button>
-      {/* <button
-      type='button'
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        disabled={!editor.can().chain().focus().toggleCode().run()}
-        className={editor.isActive("code") ? "is-active" : ""}
-      >
-        code
-      </button> */}
+
       <button
         type="button"
         onClick={() => editor.chain().focus().unsetAllMarks().run()}
@@ -119,73 +98,7 @@ const Toolbar = ({ editor }) => {
           <ClearFormatting />
         </span>
       </button>
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().clearNodes().run()}
-      >
-        clear nodes
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().setParagraph().run()}
-        className={editor.isActive("paragraph") ? "is-active" : ""}
-        title="Paragraph"
-      >
-        <span className="fill-gray-700">
-          <Paragraph />
-        </span>
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
-        title="Heading 1"
-      >
-        <span className="text-[15px] font-medium">H1</span>
-      
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
-        title="Heading 2"
-      >
-        <span className="text-[15px] font-medium">H2</span>
-      
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={editor.isActive("heading", { level: 3 }) ? "is-active" : ""}
-        title="Heading 3"
-      >
-        <span className="text-[15px] font-medium">H3</span>
-      
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-        className={editor.isActive("heading", { level: 4 }) ? "is-active" : ""}
-        title="Heading 4"
-      >
-        <span className="text-[15px] font-medium">H4</span>
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-        className={editor.isActive("heading", { level: 5 }) ? "is-active" : ""}
-        title="Heading 5"
-      >
-        <span className="text-[15px] font-medium">H5</span>
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-        className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
-        title="Heading 6"
-      >
-        <span className="text-[15px] font-medium">H6</span>
-      </button> */}
+
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -196,6 +109,7 @@ const Toolbar = ({ editor }) => {
           <BulletList />
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
@@ -206,25 +120,6 @@ const Toolbar = ({ editor }) => {
           <NumberList />
         </span>
       </button>
-      {/* <button
-      type='button'
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive("codeBlock") ? "is-active" : ""}
-      >
-        code block
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.commands.setLink()}
-        // className={editor.isActive("blockquote") ? "is-active" : ""}
-        title="Blockquote"
-      >
-        <span
-          className="fill-gray-700"
-        >
-          <LinkIcon />
-        </span>
-      </button> */}
 
       <ImageUpload editor={editor} />
 
@@ -240,6 +135,7 @@ const Toolbar = ({ editor }) => {
           <Quote />
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().setHorizontalRule().run()}
@@ -249,6 +145,7 @@ const Toolbar = ({ editor }) => {
           <HorizontalRule />
         </span>
       </button>
+
       <button
         type="button"
         onClick={() => editor.chain().focus().setHardBreak().run()}
@@ -259,22 +156,9 @@ const Toolbar = ({ editor }) => {
         </span>
       </button>
 
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().setColor("#958DF1").run()}
-        className={
-          editor.isActive("textStyle", { color: "#958DF1" }) ? "is-active" : ""
-        }
-      >
-        purple
-      </button> */}
-
-      {/* <YoutubeVideo editor={editor} currentTheme={currentTheme} /> */}
-
       <button
         type="button"
         onClick={() => editor.chain().focus().undo().run()}
-        // onClick={() => editor.chain().focus().setImage({src: '', alt: '', title: ''}).run()}
         disabled={!editor.can().chain().focus().undo().run()}
         title="Undo"
       >
@@ -295,7 +179,6 @@ const Toolbar = ({ editor }) => {
 
       <button
         type="button"
-        // onClick={() => editor?.commands.clearContent(true)}
         onClick={() => editor.chain().focus().clearContent(true).run()}
         disabled={!editor.can().chain().focus().clearContent().run()}
         title="Reset"

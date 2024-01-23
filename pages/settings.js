@@ -4,26 +4,18 @@ import PageWrapper from "@/components/Layout/PageWrapper";
 import useGetData from "@/hooks/useGetData";
 import useTheme from "@/hooks/useTheme";
 import SeoSettings from "@/components/Settings/Seo";
-// import { useSiteInfo } from "@/lib/store";
 
 function SettingsPage() {
-  // const { theme } = useSiteInfo();
   const theme = useTheme();
 
-  const {
-    data: settingsData,
-    // isLoading,
-    isPending,
-    // isError,
-    // isFetched,
-    // isSuccess,
-  } = useGetData({ path: "/user/setting" });
+  const { data: settingsData, isPending } = useGetData({
+    path: "/user/setting",
+  });
 
-  console.log("settingsData", settingsData);
+  // console.log("settingsData", settingsData);
 
   const data = {
     name: settingsData?.data.name,
-    // color: theme,
     color: settingsData?.data.color || theme,
     email: settingsData?.data.email,
     logo: settingsData?.data.logo,

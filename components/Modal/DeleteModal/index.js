@@ -59,17 +59,6 @@ function DeleteModal({
             </Button>
           </div>
         </div>
-
-        {/* <LoadingAnimation
-          // key={categoryInfo._id}
-          isPending={isPending}
-          isSuccess={isSuccess}
-          isError={isError}
-          handleOnComplete={() => {
-            setShowDeleteModal(false);
-            reset();
-          }}
-        /> */}
       </AlertDialogContent>
     </AlertDialog>
   );

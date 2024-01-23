@@ -1,9 +1,9 @@
+import { useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 import { IconEdit } from "@/components/Icons";
 import ImageUploadModal from "@/components/Modal/ImageUploadModal";
 import usePostData from "@/hooks/usePostData";
-import { toast } from "sonner";
-import { useState } from "react";
 
 function LogoChange({ logo }) {
   const [showImageModal, setShowImageModal] = useState(false);
