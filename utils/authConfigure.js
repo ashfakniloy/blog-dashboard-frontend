@@ -9,7 +9,6 @@ const googleClient = new google.auth.OAuth2(
 );
 
 export async function authConfigure(token) {
-  // const url = "https://bayshore-backend.vercel.app/user/token";
   const url = `${API_URL}/user/token`;
 
   const { data } = await axios.get(url, {

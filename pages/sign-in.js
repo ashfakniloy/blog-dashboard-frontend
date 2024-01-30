@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { toast } from "sonner";
 import { Form, Formik } from "formik";
 import useSignin from "@/hooks/useSignin";
 import useGetDataPublic from "@/hooks/useGetDataPublic";
@@ -15,6 +18,13 @@ function SigninPage() {
     password: "",
     rememberMe: false,
   };
+
+  const { query } = useRouter();
+
+  useEffect(() => {
+    query.token_expired === "true" &&
+      toast.error("Token expired, signin again");
+  }, [query]);
 
   const { data, isPending } = useGetDataPublic({
     path: "/user/public/logo",

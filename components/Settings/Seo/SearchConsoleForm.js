@@ -1,19 +1,23 @@
-"use client";
-import ConsoleButton from "@/components/Console/ConsoleButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ConsoleButton from "@/components/Console/ConsoleButton";
 import ConnectedConsole from "@/components/Console/ConnectedConsole";
 
 function SearchConsoleForm() {
   const [data, setData] = useState("");
+
   useEffect(() => {
     (async () => {
-      const res = await axios.get("/api/google/user");
-      if (res.status === 200) {
+      try {
+        const res = await axios.get("/api/google/user");
+
         setData(res.data);
+      } catch (error) {
+        console.log("error", error);
       }
     })();
   }, []);
+
   return (
     <div>{data ? <ConnectedConsole data={data} /> : <ConsoleButton />}</div>
   );

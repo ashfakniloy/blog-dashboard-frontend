@@ -1,9 +1,11 @@
 import { signOut } from "next-auth/react";
 
 function useSignout() {
-  const signout = () => {
+  const signout = (param) => {
     signOut({
-      callbackUrl: `${window.location.origin}/sign-in`,
+      callbackUrl: param
+        ? `${window.location.origin}/sign-in?${param}`
+        : `${window.location.origin}/sign-in`,
       // redirect: false,
     });
   };
